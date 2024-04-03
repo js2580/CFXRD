@@ -221,40 +221,39 @@ for scanNo in scanlist:
                 # plt.plot(x, y)
                 #######################################
                 
-                if doping == False:
-                    p100 = 3.0
-                    # # LowerLim = 2.4
-                    # # UpperLim = 3.5
-                    LowerLim = 2.7
-                    UpperLim = 3.3
-                    
-                    spec = {
-                            'x': x,
-                            'y': y,
-                            'model': [
-                                        {'type': 'PseudoVoigtModel',
-                                              'params': {
-                                                  'center'  : p100,
-                                                    'sigma'   : 0.1
-                                                  },
-                                                  'help':{
-                                                    'center'  : {'max': 3.2},
-                                                    'sigma'   : {'max': 0.4},
-                                                    }
-                                        },
-                                        {'type': 'GaussianModel',
-                                                'params': {
-                                                    'center'  : 2.8,
-                                                    'sigma'   : 0.55,
-                                                    },
+                p100 = 3.0
+                # # LowerLim = 2.4
+                # # UpperLim = 3.5
+                LowerLim = 2.7
+                UpperLim = 3.3
+                
+                spec = {
+                        'x': x,
+                        'y': y,
+                        'model': [
+                                    {'type': 'PseudoVoigtModel',
+                                            'params': {
+                                                'center'  : p100,
+                                                'sigma'   : 0.1
+                                                },
                                                 'help':{
-                                                    # 'center'  : {'min': 3.2},
-                                                    'sigma'   : {'min': 0.4},
-                                                    }
-                                        },
-                                        
-                                ]
-                            }
+                                                'center'  : {'max': 3.2},
+                                                'sigma'   : {'max': 0.4},
+                                                }
+                                    },
+                                    {'type': 'GaussianModel',
+                                            'params': {
+                                                'center'  : 2.8,
+                                                'sigma'   : 0.55,
+                                                },
+                                            'help':{
+                                                # 'center'  : {'min': 3.2},
+                                                'sigma'   : {'min': 0.4},
+                                                }
+                                    },
+                                    
+                            ]
+                        }
 
                 FittingOutput = metaData.PeakModelGen(spec = spec, LowerLim = LowerLim, UpperLim = UpperLim )
                 # FittingOutput.fit_report() # ! uncomment to show fitting report 
