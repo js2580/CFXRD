@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CFXRD module &mdash; CFXRD Analysis Documentation 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            CFXRD Analysis Documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">CFXRD module</a></li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">CFXRD Analysis Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">CFXRD module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/CFXRD.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-CFXRD">
+<span id="cfxrd-module"></span><h1>CFXRD module<a class="headerlink" href="#module-CFXRD" title="Permalink to this heading"></a></h1>
+<p>Created on Sun Aug 28 12:08:08 2022</p>
+<p>&#64;author: js2580</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="CFXRD.CFXRD">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">CFXRD.</span></span><span class="sig-name descname"><span class="pre">CFXRD</span></span><a class="reference internal" href="_modules/CFXRD.html#CFXRD"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CFXRD.CFXRD" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This is a class to analyse X-ray diffraction of carbon fibre, containing necessary functions for the analysis.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="CFXRD.CFXRD.Anisotropic_selective_angle">
+<span class="sig-name descname"><span class="pre">Anisotropic_selective_angle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">PeakAngle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fwhmA</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fwhmB</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CFXRD.html#CFXRD.Anisotropic_selective_angle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CFXRD.CFXRD.Anisotropic_selective_angle" title="Permalink to this definition"></a></dt>
+<dd><p>This function determines index angles from the centre of the peak to cover the defined angles.        
+Index is adjusted when goes beyond the maximum index range.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="field-list simple">
+<dt class="field-odd">PeakAngle (real)<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Angle at the centre of the peak</p>
+</dd>
+<dt class="field-even">fwhmA (real)<span class="colon">:</span></dt>
+<dd class="field-even"><p>Full-Width-Half-Maximum (002) or Angle width</p>
+</dd>
+<dt class="field-odd">fwhmB (real)<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Full-Width-Half-Maximum (100) or Angle width</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><dl class="field-list simple">
+<dt class="field-odd">indexes (list)<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List of indexes in first/second peaks of 002 and 100</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>:index_A = 002 angle
+:index_invA = invert 002 (180 degrees offset or 180/anglePerbin)
+:index_B = 100 angle (90 degrees offset to 002)
+:index_invB = invert 100 (180 degrees offset or 180/anglePerbin)</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CFXRD.CFXRD.Epsilon_cal">
+<span class="sig-name descname"><span class="pre">Epsilon_cal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deform</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CFXRD.html#CFXRD.Epsilon_cal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CFXRD.CFXRD.Epsilon_cal" title="Permalink to this definition"></a></dt>
+<dd><dl class="simple">
+<dt>Calculate lattice strain</dt><dd><p>Outliner is removed via Interquartile criterion</p>
+</dd>
+<dt>Args:</dt><dd><dl class="field-list simple">
+<dt class="field-odd">deform (np.array)<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Strain values</p>
+</dd>
+<dt class="field-even">ref (real)<span class="colon">:</span></dt>
+<dd class="field-even"><p>Strain free values</p>
+</dd>
+<dt class="field-odd">dtype (str)<span class="colon">:</span></dt>
+<dd class="field-odd"><p>‘d-spacing’, ‘q-spacing’</p>
+</dd>
+</dl>
+</dd>
+<dt>Raises:</dt><dd><dl class="field-list simple">
+<dt class="field-odd">ValueError<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Invalid data type</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><dl class="field-list simple">
+<dt class="field-odd">epsilon (real)<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Lattice strain</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CFXRD.CFXRD.Filter_selective_angle">
+<span class="sig-name descname"><span class="pre">Filter_selective_angle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">indexes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pointNo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lowThreshold</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upThreshold</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CFXRD.html#CFXRD.Filter_selective_angle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CFXRD.CFXRD.Filter_selective_angle" title="Permalink to this definition"></a></dt>
+<dd><dl class="simple">
+<dt>Filter selective angle index where it consists of missing data due to the detector stripes (dead pixel)</dt><dd><p>lower and upper Thresholds set acccording the missing data (excluding mask data at beam centre)</p>
+</dd>
+<dt>Args:</dt><dd><dl class="field-list simple">
+<dt class="field-odd">indexes (integer)<span class="colon">:</span></dt>
+<dd class="field-odd"><p>_description_</p>
+</dd>
+<dt class="field-even">pointNo (integer)<span class="colon">:</span></dt>
+<dd class="field-even"><p>_description_</p>
+</dd>
+<dt class="field-odd">lowThreshold (real)<span class="colon">:</span></dt>
+<dd class="field-odd"><p>_description_</p>
+</dd>
+<dt class="field-even">upThreshold (real)<span class="colon">:</span></dt>
+<dd class="field-even"><p>_description_</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><dl class="field-list simple">
+<dt class="field-odd">indexes<span class="colon">:</span></dt>
+<dd class="field-odd"><p>indexes</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CFXRD.CFXRD.GenResultArray">
+<span class="sig-name descname"><span class="pre">GenResultArray</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ColumnNames</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CFXRD.html#CFXRD.GenResultArray"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CFXRD.CFXRD.GenResultArray" title="Permalink to this definition"></a></dt>
+<dd><p>This function generate a pre-define table data to stored neccessary parameters</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="field-list simple">
+<dt class="field-odd">ColumnNames (list)<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List of header names needs to be stored</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CFXRD.CFXRD.Integrate_selective_angle_intensity">
+<span class="sig-name descname"><span class="pre">Integrate_selective_angle_intensity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">array</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CFXRD.html#CFXRD.Integrate_selective_angle_intensity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CFXRD.CFXRD.Integrate_selective_angle_intensity" title="Permalink to this definition"></a></dt>
+<dd><dl class="simple">
+<dt>This function average the intensities over the selective angle or indexes</dt><dd><p>At the point where intensity = 0, it is masked out from the averaging calculation
+It then return the NAN value back to zero for further curve fitting</p>
+</dd>
+<dt>Args:</dt><dd><dl class="field-list simple">
+<dt class="field-odd">array (real)<span class="colon">:</span></dt>
+<dd class="field-odd"><p>_description_</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><dl class="field-list simple">
+<dt class="field-odd">average<span class="colon">:</span></dt>
+<dd class="field-odd"><p>average value ignore NAN value</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CFXRD.CFXRD.PeakModelGen">
+<span class="sig-name descname"><span class="pre">PeakModelGen</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">LowerLim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">UpperLim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CFXRD.html#CFXRD.PeakModelGen"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CFXRD.CFXRD.PeakModelGen" title="Permalink to this definition"></a></dt>
+<dd><p>This function generates composite fitting model, see more detail: <a class="reference external" href="https://chrisostrouchov.com/post/peak_fit_xrd_python/">https://chrisostrouchov.com/post/peak_fit_xrd_python/</a></p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="field-list simple">
+<dt class="field-odd">spec (dict)<span class="colon">:</span></dt>
+<dd class="field-odd"><p>models specifications</p>
+</dd>
+<dt class="field-even">LowerLim (real)<span class="colon">:</span></dt>
+<dd class="field-even"><p>Lower limit x-axis</p>
+</dd>
+<dt class="field-odd">UpperLim (real)<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Upper limit x-axis</p>
+</dd>
+</dl>
+</dd>
+<dt>Raises:</dt><dd><dl class="field-list simple">
+<dt class="field-odd">NotImplementedError<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Only ‘GaussianModel’, ‘LorentzianModel’, ‘VoigtModel’ are available</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><dl class="field-list simple">
+<dt class="field-odd">FittingOutput<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Fitting output</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CFXRD.CFXRD.PeakResidualPlot">
+<span class="sig-name descname"><span class="pre">PeakResidualPlot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">FittingOutput</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CFXRD.html#CFXRD.PeakResidualPlot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CFXRD.CFXRD.PeakResidualPlot" title="Permalink to this definition"></a></dt>
+<dd><p>This function plot peak fitting residual</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="field-list simple">
+<dt class="field-odd">FittingOutput (dict)<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Fitting output; requires PeakModelGen() first</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CFXRD.CFXRD.Qspacing_to_Dspacing">
+<span class="sig-name descname"><span class="pre">Qspacing_to_Dspacing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Input</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CFXRD.html#CFXRD.Qspacing_to_Dspacing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CFXRD.CFXRD.Qspacing_to_Dspacing" title="Permalink to this definition"></a></dt>
+<dd><p>Convert q-spacing to d-spacing</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="field-list simple">
+<dt class="field-odd">Input (real)<span class="colon">:</span></dt>
+<dd class="field-odd"><p>q-spacing</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><dl class="field-list simple">
+<dt class="field-odd">twoTheta<span class="colon">:</span></dt>
+<dd class="field-odd"><p>2θ in degree</p>
+</dd>
+<dt class="field-even">d<span class="colon">:</span></dt>
+<dd class="field-even"><p>d-spacing in angstorm</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Requires Wavelength.
+Define this via setDetectorParams().</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CFXRD.CFXRD.cake_AzimuthalIntegration">
+<span class="sig-name descname"><span class="pre">cake_AzimuthalIntegration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">radialMax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radialMin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angleMax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">450</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angleMin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">90</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CFXRD.html#CFXRD.cake_AzimuthalIntegration"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CFXRD.CFXRD.cake_AzimuthalIntegration" title="Permalink to this definition"></a></dt>
+<dd><p>This function performs average azimuthal integration from 2D cake data (Azimuthal angle VS Radial distance) into 1D data (Intensity vs Radial distance, 2θ or q)</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="field-list simple">
+<dt class="field-odd">radialMax (real)<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Maximum value in radial distance</p>
+</dd>
+<dt class="field-even">radialMin (real)<span class="colon">:</span></dt>
+<dd class="field-even"><p>Minimum value in radial distance</p>
+</dd>
+<dt class="field-odd">angleMax (real)<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Maximum azimuthal angle. Defaults to 450.</p>
+</dd>
+<dt class="field-even">angleMin (real)<span class="colon">:</span></dt>
+<dd class="field-even"><p>Minimum azimuthal angle. Defaults to 90.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CFXRD.CFXRD.cake_RadialIntegration">
+<span class="sig-name descname"><span class="pre">cake_RadialIntegration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">radialMax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radialMin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angleMax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">450</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angleMin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">90</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CFXRD.html#CFXRD.cake_RadialIntegration"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CFXRD.CFXRD.cake_RadialIntegration" title="Permalink to this definition"></a></dt>
+<dd><p>This function performs average radial integration from 2D cake data (Azimuthal angle VS Radial distance) into 1D data (Intensity vs Azimuthal angle)</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="field-list simple">
+<dt class="field-odd">radialMax (real)<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Maximum value in radial distance</p>
+</dd>
+<dt class="field-even">radialMin (real)<span class="colon">:</span></dt>
+<dd class="field-even"><p>Minimum value in radial distance</p>
+</dd>
+<dt class="field-odd">angleMax (real)<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Maximum azimuthal angle. Defaults to 450.</p>
+</dd>
+<dt class="field-even">angleMin (real)<span class="colon">:</span></dt>
+<dd class="field-even"><p>Minimum azimuthal angle. Defaults to 90.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CFXRD.CFXRD.combineDataintoGridarray">
+<span class="sig-name descname"><span class="pre">combineDataintoGridarray</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scanNo</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filetype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'.csv'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CFXRD.html#CFXRD.combineDataintoGridarray"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CFXRD.CFXRD.combineDataintoGridarray" title="Permalink to this definition"></a></dt>
+<dd><dl class="simple">
+<dt>This function combine multiples scans into a single array with the unique positions</dt><dd><p>Motor position can be sorted 
+df = df.sort_values([‘Ymotor’, ‘Xmotor’], ascending = [True, False])</p>
+</dd>
+<dt>Args:</dt><dd><dl class="field-list simple">
+<dt class="field-odd">Dir (str)<span class="colon">:</span></dt>
+<dd class="field-odd"><p>File directory</p>
+</dd>
+<dt class="field-even">scanNo (list)<span class="colon">:</span></dt>
+<dd class="field-even"><p>Scan number</p>
+</dd>
+<dt class="field-odd">filetype (str)<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Extension file type. Defaults to ‘.csv’.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><dl class="field-list simple">
+<dt class="field-odd">girdDat<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Array grid data</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CFXRD.CFXRD.get_neighbor_average">
+<span class="sig-name descname"><span class="pre">get_neighbor_average</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Input</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Cat</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CFXRD.html#CFXRD.get_neighbor_average"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CFXRD.CFXRD.get_neighbor_average" title="Permalink to this definition"></a></dt>
+<dd><p>Allow value to propagate to NaN by averaing neighbor values</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CFXRD.CFXRD.lattice_strain_d_spacing">
+<span class="sig-name descname"><span class="pre">lattice_strain_d_spacing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">d</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d_0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CFXRD.html#CFXRD.lattice_strain_d_spacing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CFXRD.CFXRD.lattice_strain_d_spacing" title="Permalink to this definition"></a></dt>
+<dd><p>Convert d-spacing to lattice strain</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="field-list simple">
+<dt class="field-odd">d (real)<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Observed d-spacing</p>
+</dd>
+<dt class="field-even">d_0 (real)<span class="colon">:</span></dt>
+<dd class="field-even"><p>Strain free d-spacing</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><dl class="field-list simple">
+<dt class="field-odd">epsilon (real)<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Lattice strain</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CFXRD.CFXRD.lattice_strain_q_spacing">
+<span class="sig-name descname"><span class="pre">lattice_strain_q_spacing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q_0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CFXRD.html#CFXRD.lattice_strain_q_spacing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CFXRD.CFXRD.lattice_strain_q_spacing" title="Permalink to this definition"></a></dt>
+<dd><p>Convert q-spacing to lattice strain</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="field-list simple">
+<dt class="field-odd">q (real)<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Observed q-spacing</p>
+</dd>
+<dt class="field-even">q_0 (real)<span class="colon">:</span></dt>
+<dd class="field-even"><p>Strain free q-spacing</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><dl class="field-list simple">
+<dt class="field-odd">epsilon (real)<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Lattice strain</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CFXRD.CFXRD.motor_position">
+<span class="sig-name descname"><span class="pre">motor_position</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">motor_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">motorX</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">motorY</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scanNo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pointNo</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CFXRD.html#CFXRD.motor_position"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CFXRD.CFXRD.motor_position" title="Permalink to this definition"></a></dt>
+<dd><p>This function reads motor positions input file and are adjusted for visuallisation</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="field-list simple">
+<dt class="field-odd">motor_dir (str)<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Motor directory</p>
+</dd>
+<dt class="field-even">motorX (str)<span class="colon">:</span></dt>
+<dd class="field-even"><p>Motor name in x-axis, e.g. gtbX3</p>
+</dd>
+<dt class="field-odd">motorY (str)<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Motor name in y-axis, e.g. gtbY2</p>
+</dd>
+<dt class="field-even">scanNo (int)<span class="colon">:</span></dt>
+<dd class="field-even"><p>Scan number (unique number)</p>
+</dd>
+<dt class="field-odd">pointNo (int)<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Point/Slice number</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><dl class="field-list simple">
+<dt class="field-odd">x_pos<span class="colon">:</span></dt>
+<dd class="field-odd"><p>X position</p>
+</dd>
+<dt class="field-even">y_pos<span class="colon">:</span></dt>
+<dd class="field-even"><p>Y position</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CFXRD.CFXRD.pixel_to_Dspacing">
+<span class="sig-name descname"><span class="pre">pixel_to_Dspacing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Input</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CFXRD.html#CFXRD.pixel_to_Dspacing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CFXRD.CFXRD.pixel_to_Dspacing" title="Permalink to this definition"></a></dt>
+<dd><p>Convert pixel to d-spacing</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="field-list simple">
+<dt class="field-odd">Input (real)<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pixel value</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><dl class="field-list simple">
+<dt class="field-odd">twoTheta<span class="colon">:</span></dt>
+<dd class="field-odd"><p>2θ in degree</p>
+</dd>
+<dt class="field-even">d<span class="colon">:</span></dt>
+<dd class="field-even"><p>d-spacing in angstorm</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Requires Pixel size, Wavelength and Sample to detector distance.
+Define these via setDetectorParams().</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CFXRD.CFXRD.readCakeData">
+<span class="sig-name descname"><span class="pre">readCakeData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Intensity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">AzimuthalAngle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">RadialDist</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CFXRD.html#CFXRD.readCakeData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CFXRD.CFXRD.readCakeData" title="Permalink to this definition"></a></dt>
+<dd><p>This function read input caked data (polar coordinate: Azimuthal angle VS Radial distance)
+Caked data will be 3D array e.g. [No. slice, azimuthal angle, radial distance]</p>
+<p>Min, Max and data range are calculated</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="field-list simple">
+<dt class="field-odd">Intensity (real)<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Intensity</p>
+</dd>
+<dt class="field-even">AzimuthalAngle (real)<span class="colon">:</span></dt>
+<dd class="field-even"><p>Azimuthal angle</p>
+</dd>
+<dt class="field-odd">RadialDist (real)<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Radial distance</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CFXRD.CFXRD.setDetectorParams">
+<span class="sig-name descname"><span class="pre">setDetectorParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pixelSize</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">SD</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wavelength</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">BeamEnergy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CFXRD.html#CFXRD.setDetectorParams"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CFXRD.CFXRD.setDetectorParams" title="Permalink to this definition"></a></dt>
+<dd><p>This function stores experimental parameters.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="field-list simple">
+<dt class="field-odd">pixelSize (real)<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Pixel size in mm</p>
+</dd>
+<dt class="field-even">SD (real)<span class="colon">:</span></dt>
+<dd class="field-even"><p>Sample-to-Detector distnace in mm</p>
+</dd>
+<dt class="field-odd">wavelength (real)<span class="colon">:</span></dt>
+<dd class="field-odd"><p>wavelegnth in angstorm</p>
+</dd>
+<dt class="field-even">BeamEnergy (real)<span class="colon">:</span></dt>
+<dd class="field-even"><p>Beam energy in keV</p>
+</dd>
+</dl>
+</dd>
+<dt>Raises:</dt><dd><dl class="field-list simple">
+<dt class="field-odd">TypeError<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Only wavelength or Beam energy is required</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CFXRD.CFXRD.twoThetaShift">
+<span class="sig-name descname"><span class="pre">twoThetaShift</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">disp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">R</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">twoTheta</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CFXRD.html#CFXRD.twoThetaShift"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CFXRD.CFXRD.twoThetaShift" title="Permalink to this definition"></a></dt>
+<dd><p>Specimen-displacement correction for powder X-ray diffraction in Debye-Scherrer geometry with a flat area detector, see <a class="reference external" href="https://doi.org/10.1107/S1600576722011360">https://doi.org/10.1107/S1600576722011360</a></p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="field-list simple">
+<dt class="field-odd">disp (real)<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Sample Displacement. Defaults to 3. in mm.</p>
+</dd>
+<dt class="field-even">R (real)<span class="colon">:</span></dt>
+<dd class="field-even"><p>Sample to Detector distance. Defaults to 127.032.</p>
+</dd>
+<dt class="field-odd">twoTheta (np.array)<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Range of 2θ in degree. Defaults to np.linspace(7, 43, 43-7+1).</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><dl class="field-list simple">
+<dt class="field-odd">eta<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Correction angle</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CFXRD.CFXRD.twoTheta_to_Qspacing">
+<span class="sig-name descname"><span class="pre">twoTheta_to_Qspacing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Input</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CFXRD.html#CFXRD.twoTheta_to_Qspacing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CFXRD.CFXRD.twoTheta_to_Qspacing" title="Permalink to this definition"></a></dt>
+<dd><p>Convert q-spacing to d-spacing</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="field-list simple">
+<dt class="field-odd">Input (real)<span class="colon">:</span></dt>
+<dd class="field-odd"><p>2θ in degree</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><dl class="field-list simple">
+<dt class="field-odd">q<span class="colon">:</span></dt>
+<dd class="field-odd"><p>q-spacing in angstorm^-1</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Requires Wavelength.
+Define this via setDetectorParams().</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="CFXRD.FibrePlot">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">CFXRD.</span></span><span class="sig-name descname"><span class="pre">FibrePlot</span></span><a class="reference internal" href="_modules/CFXRD.html#FibrePlot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CFXRD.FibrePlot" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class to plot fibre orientation</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="CFXRD.FibrePlot.Plot">
+<span class="sig-name descname"><span class="pre">Plot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/CFXRD.html#FibrePlot.Plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CFXRD.FibrePlot.Plot" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CFXRD.FibrePlot.motorPosition">
+<span class="sig-name descname"><span class="pre">motorPosition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_pos</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_pos</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">redchi1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">redchi2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CFXRD.html#FibrePlot.motorPosition"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CFXRD.FibrePlot.motorPosition" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CFXRD.FibrePlot.rotate">
+<span class="sig-name descname"><span class="pre">rotate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">origin</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CFXRD.html#FibrePlot.rotate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CFXRD.FibrePlot.rotate" title="Permalink to this definition"></a></dt>
+<dd><dl class="simple">
+<dt>Perform line transformation according to the fibre orientation</dt><dd><p>Rotate a point counterclockwise by a given angle around a given origin.
+The angle should be given in radians.</p>
+</dd>
+<dt>Args:</dt><dd><dl class="field-list simple">
+<dt class="field-odd">origin (list)<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Original/Centre points [x1, y1]</p>
+</dd>
+<dt class="field-even">point (list)<span class="colon">:</span></dt>
+<dd class="field-even"><p>Offset points [x2, y2]</p>
+</dd>
+<dt class="field-odd">angle (list)<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Angle in radians</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><dl class="field-list simple">
+<dt class="field-odd">(x, y)<span class="colon">:</span></dt>
+<dd class="field-odd"><p>new coordinates</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="CFXRD.utils">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">CFXRD.</span></span><span class="sig-name descname"><span class="pre">utils</span></span><a class="reference internal" href="_modules/CFXRD.html#utils"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CFXRD.utils" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="CFXRD.utils.InterquartileRemover">
+<span class="sig-name descname"><span class="pre">InterquartileRemover</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/CFXRD.html#utils.InterquartileRemover"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CFXRD.utils.InterquartileRemover" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CFXRD.utils.filter_nan_gaussian_conserving">
+<span class="sig-name descname"><span class="pre">filter_nan_gaussian_conserving</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sigma</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CFXRD.html#utils.filter_nan_gaussian_conserving"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CFXRD.utils.filter_nan_gaussian_conserving" title="Permalink to this definition"></a></dt>
+<dd><p>Apply a gaussian filter to an array with nans.</p>
+<p>Intensity is only shifted between not-nan pixels and is hence conserved.
+The intensity redistribution with respect to each single point
+is done by the weights of available pixels according
+to a gaussian distribution.
+All nans in arr, stay nans in gauss.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CFXRD.utils.filter_nan_gaussian_conserving2">
+<span class="sig-name descname"><span class="pre">filter_nan_gaussian_conserving2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sigma</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CFXRD.html#utils.filter_nan_gaussian_conserving2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CFXRD.utils.filter_nan_gaussian_conserving2" title="Permalink to this definition"></a></dt>
+<dd><p>Apply a gaussian filter to an array with nans.</p>
+<p>Intensity is only shifted between not-nan pixels and is hence conserved.
+The intensity redistribution with respect to each single point
+is done by the weights of available pixels according
+to a gaussian distribution.
+All nans in arr, stay nans in gauss.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="CFXRD.utils.filter_nan_gaussian_david">
+<span class="sig-name descname"><span class="pre">filter_nan_gaussian_david</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sigma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CFXRD.html#utils.filter_nan_gaussian_david"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CFXRD.utils.filter_nan_gaussian_david" title="Permalink to this definition"></a></dt>
+<dd><p>Allows intensity to leak into the nan area.
+According to Davids answer: <a class="reference external" href="https://stackoverflow.com/a/36307291/7128154">https://stackoverflow.com/a/36307291/7128154</a></p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Jiraphant Srisuriyachot.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
