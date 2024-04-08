@@ -17,7 +17,7 @@ from tqdm import tqdm
 from CFXRD.CFXRD import *
 
 # ** Define parent directory path
-ParentDir = 'C:\\Users\\js2580\\OneDrive - University of Bath\\Phd\\Research\\Synchrotron\\XRD\\MM30528 - doping\\WAXS analysis\\Analysis'
+ParentDir = '.\\'
 # ** Define input directory path
 InputDir = ParentDir + '\\data\\fibre_angle\\'
 
@@ -32,8 +32,6 @@ ColumnNames = ['ScanNo', 'PointNo', 'Xmotor', 'Ymotor', 'Cat',\
            'xc_CF_004', 'err_xc_CF_004', 'chi_CF_004',\
            ]
     
-
-
 
 # ** Define scan set numbers
 set5 = [389632,389633,389634]

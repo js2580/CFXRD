@@ -36,7 +36,7 @@ import seaborn as sns
 
 
 # %%
-ParentDir = 'C:\\Users\\js2580\\OneDrive - University of Bath\\Phd\\Research\\Synchrotron\\XRD\\MM30528 - doping\\WAXS analysis\\Analysis'
+ParentDir = '.\\'
 Dir = ParentDir + '\\data\\lattice_strain\\\\'
 
 # 5%

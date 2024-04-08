@@ -21,11 +21,11 @@ from CFXRD.CFXRD import *
 
 
 # ** Define directory paths
-ParentDir = 'C:\\Users\\js2580\\OneDrive - University of Bath\\Phd\\Research\\Synchrotron\\XRD\\MM30528 - doping\\WAXS analysis\\Analysis'
+ParentDir = '.\\'
 
 outDir = ParentDir + '\\data\\lattice_strain\\'
 output_suffix = '_002_75FWHM_100_120FWHM_fullRing_800bins.csv'
-nexus_dir = ParentDir + '\\data\\caking\\800\\_eigerScan'
+nexus_dir = ParentDir + '\\data\\caking\\_eigerScan'
 angle_dir = ParentDir + '\\data\\fibre_angle\\'
 
 

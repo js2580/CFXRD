@@ -20,7 +20,7 @@ import time
 from CFXRD.CFXRD import *
 
 # ** Define directory paths
-ParentDir = 'C:\\Users\\js2580\\OneDrive - University of Bath\\Phd\\Research\\Synchrotron\\XRD\\MM30528 - doping\\WAXS analysis\\Analysis'
+ParentDir = '.\\'
 
 outDir = ParentDir + '\\data\\lattice_strain\\'
 output_suffix = '_eta.csv'

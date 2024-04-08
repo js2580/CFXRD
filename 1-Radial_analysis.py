@@ -16,12 +16,12 @@ from tqdm import tqdm
 from CFXRD.CFXRD import *
 
 # ** Define parent directory path
-ParentDir = 'C:\\Users\\js2580\\OneDrive - University of Bath\\Phd\\Research\\Synchrotron\\XRD\\MM30528 - doping\\WAXS analysis\\Analysis'
+ParentDir = '.\\'
 
 # ** Define output directory path
 outDir = ParentDir + '\\data\\fibre_angle\\'
 # ** Define cake NEXUS file input directory path
-nexus_dir = ParentDir + '\\data\\caking\\800\\_eigerScan'
+nexus_dir = ParentDir + '\\data\\caking\\_eigerScan'
 # ** Define motor input directory path
 motor_dir = ParentDir + '\\data\\motor\\'
 # ** Define motor names
@@ -259,62 +259,6 @@ for scanNo in scanlist:
             y_pos = np.nan
         else:
             x_pos, y_pos = metaData.motor_position(motor_dir, motorX, motorY, scanNo, pointNo)
-        
-        # kink-band in set8
-        if pointNo in [1543, 1570, 1597, 1544, 1571, 1598, 1625]:
-            cat = 'Fibre'            
-            #### Peak No 1 ####
-            peak = x[idx==1][peak_pos[0]] # degrees
-            offset = 40 # degrees
-            # LowerLim = np.absolute(x[idx==1] - (peak - offset)).argmin()
-            # UpperLim = np.absolute(x[idx==1] - (peak + offset)).argmin()
-            LowerLim = (peak - offset)
-            UpperLim = (peak + offset)
-
-            spec = {
-                'x': x[idx==1],
-                'y': y[idx==1],
-                # 'x': x,
-                # 'y': y,
-                'model': [
-                            {'type': 'PseudoVoigtModel',
-                                   'params': {
-                                        # 'center'    : x[idx==1][peak_pos[0]],
-                                        # 'sigma'     : (x[idx==1][UpperLim] - x[idx==1][LowerLim])/2,
-                                        # 'height'    : y[idx==1][LowerLim:UpperLim].max(),
-                                        'fraction'  : 1
-                                       },
-                                   'help':{
-                                       # 'center'  : {'min': 190,'max': 220},
-                                       # 'sigma'   : {'min': 0},
-                                       # 'amplitude': {'max' : }
-                                       # 'fractioin' : {'min' : 1}
-                                       }
-                            },
-                        ]
-    
-                }
-
-            FittingOutput = metaData.PeakModelGen(spec = spec, LowerLim = LowerLim, UpperLim = UpperLim)
-            # FittingOutput.fit_report()
-            # metaData.PeakResidualPlot(FittingOutput)
-            
-            xc_angle1 = FittingOutput.params['m0_center'].value
-            xcstd_angle1 = FittingOutput.params['m0_center'].stderr
-            xcchi_angle1 = FittingOutput.redchi
-            fwhm_angle1  = FittingOutput.params['m0_fwhm'].value
-            
-            
-            metaData.ResultArray.loc[pointNo, 'angle1'] = xc_angle1
-            metaData.ResultArray.loc[pointNo, 'err_angle1'] = xcstd_angle1
-            metaData.ResultArray.loc[pointNo, 'angle_redchi1'] = xcchi_angle1
-            metaData.ResultArray.loc[pointNo, 'FWHM_angle1'] = fwhm_angle1
-            
-            # use the same angle angle 1 only 1 peak can be detected
-            metaData.ResultArray.loc[pointNo, 'angle2'] = xc_angle1
-            metaData.ResultArray.loc[pointNo, 'err_angle2'] = xcstd_angle1
-            metaData.ResultArray.loc[pointNo, 'angle_redchi2'] = xcchi_angle1
-            metaData.ResultArray.loc[pointNo, 'FWHM_angle2'] = fwhm_angle1
 
         
         metaData.ResultArray.loc[pointNo, 'ScanNo'] = scanNo
@@ -323,7 +267,7 @@ for scanNo in scanlist:
         metaData.ResultArray.loc[pointNo, 'Ymotor'] = y_pos
         metaData.ResultArray.loc[pointNo, 'Cat'] = cat
         
-    # metaData.ResultArray.to_csv(outDir + str(scanNo) + '.csv', na_rep='NaN', index=False)
+    metaData.ResultArray.to_csv(outDir + str(scanNo) + '.csv', na_rep='NaN', index=False)
     
         
         

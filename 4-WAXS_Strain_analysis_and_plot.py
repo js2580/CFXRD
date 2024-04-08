@@ -38,7 +38,7 @@ from CFXRD.CFXRD import *
 import seaborn as sns
 
 # ** Define directory paths
-ParentDir = 'C:\\Users\\js2580\\OneDrive - University of Bath\\Phd\\Research\\Synchrotron\\XRD\\MM30528 - doping\\WAXS analysis\\Analysis'
+ParentDir = '.\\'
 Dir = ParentDir + '\\data\\lattice_strain\\\\'
 
 
