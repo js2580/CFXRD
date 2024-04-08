@@ -34,9 +34,9 @@ ColumnNames = ['ScanNo', 'PointNo', 'Xmotor', 'Ymotor', 'Cat',\
     
 
 # ** Define scan set numbers
-set5 = [389632,389633,389634]
+setScan = [389632,389633,389634]
 
-full_set = set5
+full_set = setScan
 
 fig = plt.figure()
 

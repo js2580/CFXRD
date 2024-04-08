@@ -47,10 +47,10 @@ ColumnNames = ['ScanNo', 'PointNo', 'Xmotor', 'Ymotor', 'Cat',\
 singleScan = False
 
 # ** Define scan set numbers
-set5 = [389632,389633,389634] # 0% Humpback bridge sample
+setScan = [389632,389633,389634] # 0% Humpback bridge sample
 
 # ** Define multiple scan numbers
-scanlist = set5 
+scanlist = setScan 
 
 # ! Loop through each scanning set
 for scanNo in scanlist:

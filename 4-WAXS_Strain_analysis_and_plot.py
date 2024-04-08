@@ -43,9 +43,9 @@ Dir = ParentDir + '\\data\\lattice_strain\\\\'
 
 
 # ** Define scan set numbers
-set5 = [389632,389633,389634] # 0% Humpback bridge sample
+setScan = [389632,389633,389634] # 0% Humpback bridge sample
 
-scanNo = set5
+scanNo = setScan
 
 suffix = '_002_75FWHM_100_120FWHM_fullRing_800bins'
 

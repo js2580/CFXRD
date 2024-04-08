@@ -41,9 +41,9 @@ ColumnNames = ['ScanNo', 'PointNo', 'Xmotor', 'Ymotor', 'Cat',\
            ]
 
 # ** Define scan set numbers
-set5 = [389632,389633,389634] # 0% Humpback bridge sample
+setScan = [389632,389633,389634] # 0% Humpback bridge sample
 
-scanlist = set5
+scanlist = setScan
 
 fit002 = True
 fit100 = True
