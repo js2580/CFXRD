@@ -193,7 +193,7 @@ for scanNo in scanlist:
                         }
                     
                 FittingOutput = metaData.PeakModelGen(spec = spec, LowerLim = LowerLim, UpperLim = UpperLim )
-                # FittingOutput.fit_report() # ! uncomment to show fitting report 
+                # print(FittingOutput.fit_report()) # !uncomment to show fitting report 
                 # metaData.PeakResidualPlot(FittingOutput) # ! uncomment to show residual plot
                 
                 # ** Retrieve and assign values to be stored 
@@ -256,7 +256,7 @@ for scanNo in scanlist:
                         }
 
                 FittingOutput = metaData.PeakModelGen(spec = spec, LowerLim = LowerLim, UpperLim = UpperLim )
-                # FittingOutput.fit_report() # ! uncomment to show fitting report 
+                # print(FittingOutput.fit_report()) # !uncomment to show fitting report 
                 # metaData.PeakResidualPlot(FittingOutput) # ! uncomment to show residual plot
                 
                 # ** Retrieve and assign values to be stored 
@@ -319,7 +319,7 @@ for scanNo in scanlist:
                         }
                 
                 FittingOutput = metaData.PeakModelGen(spec = spec, LowerLim = LowerLim, UpperLim = UpperLim )
-                # FittingOutput.fit_report() # ! uncomment to show fitting report 
+                # print(FittingOutput.fit_report()) # !uncomment to show fitting report 
                 # metaData.PeakResidualPlot(FittingOutput) # ! uncomment to show residual plot
                 
                 # ** Retrieve and assign values to be stored 
@@ -374,7 +374,7 @@ for scanNo in scanlist:
                             ]
                         }
                 FittingOutput = metaData.PeakModelGen(spec = spec, LowerLim = LowerLim, UpperLim = UpperLim )
-                # FittingOutput.fit_report() # ! uncomment to show fitting report 
+                # print(FittingOutput.fit_report()) # !uncomment to show fitting report 
                 # metaData.PeakResidualPlot(FittingOutput) # ! uncomment to show residual plot
                 
                 # ** Retrieve and assign values to be stored 
