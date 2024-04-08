@@ -169,7 +169,7 @@ for scanNo in scanlist:
                 'model': [
                             {'type': 'PseudoVoigtModel',
                                    'params': {
-                                        # 'center'    : x[idx==1][peak_pos[0]],
+                                        # 'center'    : peak,
                                         # 'sigma'     : (x[idx==1][UpperLim] - x[idx==1][LowerLim])/2,
                                         # 'height'    : y[idx==1][LowerLim:UpperLim].max(),
                                         'fraction'  : 1
@@ -217,7 +217,7 @@ for scanNo in scanlist:
                 'model': [
                             {'type': 'PseudoVoigtModel',
                                     'params': {
-                                        # 'center'    : x[idx==1][peak_pos[1]],
+                                        # 'center'    : peak,
                                         # 'sigma'     : (x[idx==1][UpperLim] - x[idx==1][LowerLim])/2,
                                         # 'height'    : y[idx==1][LowerLim:UpperLim].max(),
                                         'fraction'  : 1
