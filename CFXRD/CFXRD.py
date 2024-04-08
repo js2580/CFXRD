@@ -493,7 +493,7 @@ class CFXRD:
         ax.legend(tmp)
 
         plt.xlabel("q-spacing - Å$^{-1}$")
-        plt.xlabel("Intensity - Counts")
+        plt.ylabel("Intensity - Counts")
 
 
         # components = self.output.eval_components(x = self.output.userkws['x'])
