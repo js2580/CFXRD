@@ -1,7 +1,11 @@
 # CFXRD
 
+This library provides Python scripts for X-ray diffraction (XRD) analysis in Polyacrylonitrile (PAN)-based Carbon Fibre Reinforced Polymer, particularly at the semi-crystalline structure of the fibre. This includes Radial intergration analysis (Fibre orientation determination), Azimuthal integration (Lattice spacing determination) and finally lattice strain development under in-situ loading analysis. 
 
-## Quick start 
+## References: 
+J. Srisuriyachot, Carbon fibre lattice strain mapping via microfocus synchrotron X-ray diffraction of a reinforced composite, *Carbon*, 200, pp.347-360, DOI:https://doi.org/10.1016/j.carbon.2022.08.041
+
+# Quick start 
 
 Install git and create virtual environment
 
