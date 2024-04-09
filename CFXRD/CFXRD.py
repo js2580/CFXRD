@@ -102,8 +102,7 @@ class CFXRD:
         self.Intensity_Azimuthal  = self.Intensity[:, 
                                         np.argmin(np.abs(self.AzimuthalAngle-angleMin)):np.argmin(np.abs(self.AzimuthalAngle-angleMax))+1 ,
                                             np.argmin(np.abs(self.RadialDist-radialMin)):np.argmin(np.abs(self.RadialDist-radialMax))+1]
-        self.Intensity_Azimuthal = np.nanmean(self.Intensity_Azimuthal, axis=1)
-
+        
     
     def GenResultArray(self, ColumnNames = None):
         """This function generate a pre-define table data to stored neccessary parameters

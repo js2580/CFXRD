@@ -127,16 +127,7 @@ for scanNo in scanlist:
             
             # plt.figure()
             # plt.plot(Q, allA, label= 'All A')
-            # plt.plot(Pixel, metaData.Integrate_selective_angle_intensity(metaData.Intensity[pointNo][index_A + index_invA]), label= 'All A')
-                       
             # plt.plot(Q, allB, label= 'All B')
-            # plt.plot(Q, metaData.Integrate_selective_angle_intensity(metaData.Intensity[pointNo][index_B + index_invB]), label= 'All B')
-            # allB = metaData.Integrate_selective_angle_intensity(metaData.Intensity[pointNo][index_B + index_invB])
-            # plt.legend()
-            
-            # plt.figure()
-            # plt.plot(Pixel, subAll, '-x', label = 'abs subtract A - B')
-            # # plt.plot(Pixel, allA, '-x', label = 'all A')
             # plt.legend()
             
             # ######################################

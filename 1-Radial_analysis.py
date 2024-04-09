@@ -20,6 +20,7 @@ ParentDir = '.\\'
 
 # ** Define output directory path
 outDir = ParentDir + '\\data\\fibre_angle\\'
+output_suffix = '.csv'
 # ** Define cake NEXUS file input directory path
 nexus_dir = ParentDir + '\\data\\caking\\_eigerScan'
 # ** Define motor input directory path
@@ -78,6 +79,13 @@ for scanNo in scanlist:
     metaData.cake_RadialIntegration(radialMax = maxQ, radialMin = minQ, angleMax = 450, angleMin = 90)
     
     metaData.GenResultArray(ColumnNames = ColumnNames)
+
+    # ! Check if there is an exisiting file
+    if os.path.isfile(outDir + str(scanNo) + output_suffix) == True:
+        # Assigned exisisting date to Result array
+        metaData.ResultArray = pd.read_csv(outDir + str(scanNo) + output_suffix)
+    else:
+        continue
     
     # ! Loop through scanning points in each scanning set (z-axis)
     for pointNo in tqdm(range(metaData.TotalSlice)):
@@ -267,7 +275,7 @@ for scanNo in scanlist:
         metaData.ResultArray.loc[pointNo, 'Ymotor'] = y_pos
         metaData.ResultArray.loc[pointNo, 'Cat'] = cat
         
-    metaData.ResultArray.to_csv(outDir + str(scanNo) + '.csv', na_rep='NaN', index=False)
+    metaData.ResultArray.to_csv(outDir + str(scanNo) + output_suffix, na_rep='NaN', index=False)
     
         
         
