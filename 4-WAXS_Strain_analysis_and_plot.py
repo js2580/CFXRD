@@ -108,7 +108,7 @@ plot = plt.imshow(epsilon002, aspect=('equal'))
 plt.clim(-9e-3, 0)
 
 cbar = fig.colorbar(plot, format=OOMFormatter(-3, mathText=False))
-plt.colorbar(label = 'Relative radial {002} lattice strain, (mm/mm)', format ='%.2e')
+cbar.set_label('Relative radial {002} lattice strain, (mm/mm)')
 plt.title('{002}')
 plt.tight_layout()
 
@@ -141,7 +141,7 @@ plot = plt.imshow(epsilon100, aspect=('equal'))
 plt.clim(-3e-3, 2e-3)
 
 cbar = fig.colorbar(plot, format=OOMFormatter(-3, mathText=False))
-plt.colorbar(label = 'Relative axial {100} lattice strain, (mm/mm)', format ='%.2e')
+cbar.set_label('Relative radial {100} lattice strain, (mm/mm)')
 plt.title('{100}')
 plt.tight_layout()
 
