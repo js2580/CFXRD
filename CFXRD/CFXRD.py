@@ -957,7 +957,7 @@ class FibrePlot:
         self.redchi1 = redchi1
         self.redchi2 = redchi2
         
-    def Plot(self):
+    def Plot(self, label:str='OFF'):
         def forceAspect(ax,aspect=1):
             im = ax.get_images()
             extent =  im[0].get_extent()
@@ -995,6 +995,13 @@ class FibrePlot:
                 # Uncomment to reveal empty space (off sample)
                 #plt.plot(self.x_pos[i],self.y_pos[i],'.g', markersize=4)
                 pass
+
+            if label.lower() == 'on':
+                plt.text(self.x_pos[i], self.y_pos[i], i, fontsize=8, ha='center', va='center')
+            elif label.lower() == 'off':
+                continue
+            else:
+                raise ValueError('Please specify ON or OFF label plot')
         
         
         
