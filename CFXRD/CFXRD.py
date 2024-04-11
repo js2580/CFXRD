@@ -977,10 +977,10 @@ class FibrePlot:
             y2 = self.y_pos[i] - k
             
             if self.cat[i] == 'Fibre':
-                if np.absolute(1 - self.redchi1[i]) < np.absolute(1 - self.redchi2[i]):
+                if (np.absolute(self.redchi1[i]) < np.absolute(self.redchi2[i])) and ~np.isnan(self.redchi1[i]):
                     angle = self.angle1[i]
                     transAngle = math.radians(180-angle)
-                else:
+                elif (np.absolute(self.redchi1[i]) > np.absolute(self.redchi2[i])) and ~np.isnan(self.redchi2[i]):
                     angle = self.angle2[i]
                     transAngle = math.radians(360-angle)
                     

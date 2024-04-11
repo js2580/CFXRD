@@ -106,7 +106,7 @@ for scanNo in scanlist:
     # for pointNo in [865, 872]:
         print(f'im No: {pointNo}')
         if cat[pointNo] == 'Fibre':
-            if np.absolute(1 - angle_chi1[pointNo]) < np.absolute(1 - angle_chi2[pointNo]):
+            if (np.absolute(angle_chi1[pointNo]) < np.absolute(angle_chi2[pointNo])) or np.isnan(angle_chi2[pointNo]):
                 angle = angle1[pointNo] 
                 fwhm = fwhm_angle1[pointNo]
             else:
