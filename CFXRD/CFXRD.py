@@ -957,7 +957,7 @@ class FibrePlot:
         self.redchi1 = redchi1
         self.redchi2 = redchi2
         
-    def Plot(self, label:str='OFF'):
+    def Orientation_Plot(self, label:str='OFF'):
         def forceAspect(ax,aspect=1):
             im = ax.get_images()
             extent =  im[0].get_extent()

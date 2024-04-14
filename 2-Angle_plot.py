@@ -50,7 +50,7 @@ for scanNo in full_set:
      df = pd.read_csv(InputDir +  str(scanNo) +  '.csv')
      
      metaData.motorPosition(df['Xmotor'], df['Ymotor'], df['Cat'], df['angle1'], df['angle2'], df['angle_redchi1'], df['angle_redchi2'])
-     metaData.Plot() # Plot fibre orientation
+     metaData.Orientation_Plot(label='ON') # Plot fibre orientation
      
      
      
