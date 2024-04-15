@@ -214,6 +214,43 @@ It then return the NAN value back to zero for further curve fitting</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="CFXRD.CFXRD.Mapping_Plot">
+<span class="sig-name descname"><span class="pre">Mapping_Plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cbarTitle</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">category</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cbarLabel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cbarMax</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cbarMin</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Marker</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'OFF'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'OFF'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CFXRD.html#CFXRD.Mapping_Plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CFXRD.CFXRD.Mapping_Plot" title="Permalink to this definition"></a></dt>
+<dd><p>This function plots heating mapping of the input 2D array like image pixels</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="field-list simple">
+<dt class="field-odd">Input (np.array)<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Input 2D array</p>
+</dd>
+<dt class="field-even">cbarTitle (str)<span class="colon">:</span></dt>
+<dd class="field-even"><p>Colour bar title</p>
+</dd>
+<dt class="field-odd">category (np.array)<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Category to classify data points such Fibre or Off-sample positions</p>
+</dd>
+<dt class="field-even">cbarLabel (str)<span class="colon">:</span></dt>
+<dd class="field-even"><p>Colour bar label</p>
+</dd>
+<dt class="field-odd">cbarMax (float)<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Colour bar max intensity value</p>
+</dd>
+<dt class="field-even">cbarMin (float)<span class="colon">:</span></dt>
+<dd class="field-even"><p>Colour bar min intensity value</p>
+</dd>
+<dt class="field-odd">Marker (str, optional)<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Error marker point (x) Defaults to ‘OFF’.</p>
+</dd>
+<dt class="field-even">label (str, optional)<span class="colon">:</span></dt>
+<dd class="field-even"><p>Pixel number label. Defaults to ‘OFF’.</p>
+</dd>
+</dl>
+</dd>
+<dt>Raises:</dt><dd><p>ValueError: ON or OFF label plot</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="CFXRD.CFXRD.PeakModelGen">
 <span class="sig-name descname"><span class="pre">PeakModelGen</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">LowerLim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">UpperLim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CFXRD.html#CFXRD.PeakModelGen"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CFXRD.CFXRD.PeakModelGen" title="Permalink to this definition"></a></dt>
 <dd><p>This function generates composite fitting model, see more detail: <a class="reference external" href="https://chrisostrouchov.com/post/peak_fit_xrd_python/">https://chrisostrouchov.com/post/peak_fit_xrd_python/</a></p>
@@ -338,7 +375,7 @@ Define this via setDetectorParams().</p>
 <span class="sig-name descname"><span class="pre">combineDataintoGridarray</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scanNo</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filetype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'.csv'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CFXRD.html#CFXRD.combineDataintoGridarray"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CFXRD.CFXRD.combineDataintoGridarray" title="Permalink to this definition"></a></dt>
 <dd><dl class="simple">
 <dt>This function combine multiples scans into a single array with the unique positions</dt><dd><p>Motor position can be sorted 
-df = df.sort_values([‘Ymotor’, ‘Xmotor’], ascending = [True, False])</p>
+df = df.sort_values([‘Ymotor’, ‘Xmotor’], ascending = [True, True])</p>
 </dd>
 <dt>Args:</dt><dd><dl class="field-list simple">
 <dt class="field-odd">Dir (str)<span class="colon">:</span></dt>
@@ -586,8 +623,8 @@ Define this via setDetectorParams().</p>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Class to plot fibre orientation</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="CFXRD.FibrePlot.Plot">
-<span class="sig-name descname"><span class="pre">Plot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/CFXRD.html#FibrePlot.Plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CFXRD.FibrePlot.Plot" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="CFXRD.FibrePlot.Orientation_Plot">
+<span class="sig-name descname"><span class="pre">Orientation_Plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'OFF'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CFXRD.html#FibrePlot.Orientation_Plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CFXRD.FibrePlot.Orientation_Plot" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">

@@ -77,6 +77,7 @@
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib.markers</span> <span class="k">as</span> <span class="nn">markers</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">math</span>
 <span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">sin</span><span class="p">,</span> <span class="n">cos</span>
@@ -171,9 +172,8 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">Intensity_Azimuthal</span>  <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Intensity</span><span class="p">[:,</span> 
                                         <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">AzimuthalAngle</span><span class="o">-</span><span class="n">angleMin</span><span class="p">)):</span><span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">AzimuthalAngle</span><span class="o">-</span><span class="n">angleMax</span><span class="p">))</span><span class="o">+</span><span class="mi">1</span> <span class="p">,</span>
-                                            <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">RadialDist</span><span class="o">-</span><span class="n">radialMin</span><span class="p">)):</span><span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">RadialDist</span><span class="o">-</span><span class="n">radialMax</span><span class="p">))</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">Intensity_Azimuthal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Intensity_Azimuthal</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></div>
-
+                                            <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">RadialDist</span><span class="o">-</span><span class="n">radialMin</span><span class="p">)):</span><span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">RadialDist</span><span class="o">-</span><span class="n">radialMax</span><span class="p">))</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span></div>
+    
     
 <div class="viewcode-block" id="CFXRD.GenResultArray"><a class="viewcode-back" href="../CFXRD.html#CFXRD.CFXRD.GenResultArray">[docs]</a>    <span class="k">def</span> <span class="nf">GenResultArray</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ColumnNames</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;This function generate a pre-define table data to stored neccessary parameters</span>
@@ -563,7 +563,7 @@
         <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">tmp</span><span class="p">)</span>
 
         <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;q-spacing - Å$^{-1}$&quot;</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Intensity - Counts&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Intensity - Counts&quot;</span><span class="p">)</span>
 
 
         <span class="c1"># components = self.output.eval_components(x = self.output.userkws[&#39;x&#39;])</span>
@@ -623,7 +623,7 @@
 <div class="viewcode-block" id="CFXRD.combineDataintoGridarray"><a class="viewcode-back" href="../CFXRD.html#CFXRD.CFXRD.combineDataintoGridarray">[docs]</a>    <span class="k">def</span> <span class="nf">combineDataintoGridarray</span><span class="p">(</span><span class="n">Dir</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">scanNo</span><span class="p">:</span><span class="nb">list</span><span class="p">,</span> <span class="n">filetype</span> <span class="o">=</span> <span class="s1">&#39;.csv&#39;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;This function combine multiples scans into a single array with the unique positions</span>
 <span class="sd">            Motor position can be sorted </span>
-<span class="sd">            df = df.sort_values([&#39;Ymotor&#39;, &#39;Xmotor&#39;], ascending = [True, False])</span>
+<span class="sd">            df = df.sort_values([&#39;Ymotor&#39;, &#39;Xmotor&#39;], ascending = [True, True])</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            :Dir (str): File directory</span>
@@ -684,7 +684,7 @@
         
         <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">gb</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
         <span class="c1"># Invert axis by chaning ascending</span>
-        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s1">&#39;Ymotor&#39;</span><span class="p">,</span> <span class="s1">&#39;Xmotor&#39;</span><span class="p">],</span> <span class="n">ascending</span> <span class="o">=</span> <span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">])</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s1">&#39;Ymotor&#39;</span><span class="p">,</span> <span class="s1">&#39;Xmotor&#39;</span><span class="p">],</span> <span class="n">ascending</span> <span class="o">=</span> <span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">])</span>
         
         
         <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">columns</span><span class="p">)):</span>
@@ -887,8 +887,77 @@
                 <span class="k">if</span> <span class="p">(</span><span class="n">Cat</span><span class="p">[</span><span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Fibre&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">Input</span><span class="p">[</span><span class="n">m</span><span class="p">,</span><span class="n">n</span><span class="p">])):</span>
                     <span class="n">Input</span><span class="p">[</span><span class="n">m</span><span class="p">,</span><span class="n">n</span><span class="p">],</span> <span class="n">_</span> <span class="o">=</span> <span class="n">find_neighbors</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">Input</span></div></div>
+        <span class="k">return</span> <span class="n">Input</span></div>
     
+<div class="viewcode-block" id="CFXRD.Mapping_Plot"><a class="viewcode-back" href="../CFXRD.html#CFXRD.CFXRD.Mapping_Plot">[docs]</a>    <span class="k">def</span> <span class="nf">Mapping_Plot</span><span class="p">(</span><span class="n">Input</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">,</span> <span class="n">cbarTitle</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">category</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">,</span> <span class="n">cbarLabel</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">cbarMax</span><span class="p">:</span><span class="nb">float</span><span class="p">,</span> <span class="n">cbarMin</span><span class="p">:</span><span class="nb">float</span><span class="p">,</span> <span class="n">Marker</span><span class="p">:</span><span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;OFF&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;OFF&#39;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; This function plots heating mapping of the input 2D array like image pixels</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            :Input (np.array): Input 2D array</span>
+<span class="sd">            :cbarTitle (str): Colour bar title</span>
+<span class="sd">            :category (np.array): Category to classify data points such Fibre or Off-sample positions</span>
+<span class="sd">            :cbarLabel (str): Colour bar label</span>
+<span class="sd">            :cbarMax (float): Colour bar max intensity value</span>
+<span class="sd">            :cbarMin (float): Colour bar min intensity value</span>
+<span class="sd">            :Marker (str, optional): Error marker point (x) Defaults to &#39;OFF&#39;.</span>
+<span class="sd">            :label (str, optional): Pixel number label. Defaults to &#39;OFF&#39;.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            ValueError: ON or OFF label plot</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">class</span> <span class="nc">OOMFormatter</span><span class="p">(</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">ticker</span><span class="o">.</span><span class="n">ScalarFormatter</span><span class="p">):</span>
+            <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">fformat</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%1.1f</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">mathText</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">oom</span> <span class="o">=</span> <span class="n">order</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">fformat</span> <span class="o">=</span> <span class="n">fformat</span>
+                <span class="n">matplotlib</span><span class="o">.</span><span class="n">ticker</span><span class="o">.</span><span class="n">ScalarFormatter</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">useOffset</span><span class="o">=</span><span class="n">offset</span><span class="p">,</span><span class="n">useMathText</span><span class="o">=</span><span class="n">mathText</span><span class="p">)</span>
+            <span class="k">def</span> <span class="nf">_set_order_of_magnitude</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">orderOfMagnitude</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">oom</span>
+            <span class="k">def</span> <span class="nf">_set_format</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">format</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fformat</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_useMathText</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">format</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;$\mathdefault{</span><span class="si">%s</span><span class="s1">}$&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">format</span>
+
+        <span class="n">Cat</span> <span class="o">=</span> <span class="n">category</span>
+        <span class="n">height</span><span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="n">Input</span><span class="o">.</span><span class="n">shape</span>
+
+        <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+        <span class="n">marker</span> <span class="o">=</span> <span class="n">markers</span><span class="o">.</span><span class="n">MarkerStyle</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+
+        <span class="c1"># Overlay the marker on the image</span>
+        <span class="k">if</span> <span class="n">Marker</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;on&#39;</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">height</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">width</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="n">Cat</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Fibre&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">Input</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">])):</span>
+                        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="n">marker</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">Marker</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;off&#39;</span><span class="p">:</span>
+            <span class="k">pass</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Please specify ON or OFF label plot&#39;</span><span class="p">)</span>
+
+        <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">set_cmap</span><span class="p">(</span><span class="s1">&#39;jet&#39;</span><span class="p">)</span> <span class="c1"># plt.set_cmap(&#39;rainbow&#39;) # plt.set_cmap(&#39;tab20c&#39;) </span>
+        <span class="n">plot</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">Input</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">),</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">)</span> 
+        <span class="n">plt</span><span class="o">.</span><span class="n">clim</span><span class="p">(</span><span class="n">cbarMin</span><span class="p">,</span> <span class="n">cbarMax</span><span class="p">)</span>
+
+        <span class="n">cbar</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">plot</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="n">OOMFormatter</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="n">mathText</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+        <span class="n">cbar</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="n">cbarLabel</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">cbarTitle</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>    
+
+        <span class="k">if</span> <span class="n">label</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;on&#39;</span><span class="p">:</span>
+            <span class="c1"># Get the dimensions of the data</span>
+            <span class="c1"># Iterate over each pixel and annotate</span>
+            <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span> 
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">height</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">width</span><span class="p">):</span>
+                    <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+                    <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">elif</span> <span class="n">label</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;off&#39;</span><span class="p">:</span>
+            <span class="k">pass</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Please specify ON or OFF label plot&#39;</span><span class="p">)</span></div></div>
+
+
 
 <span class="c1">#</span>
 <div class="viewcode-block" id="utils"><a class="viewcode-back" href="../CFXRD.html#CFXRD.utils">[docs]</a><span class="k">class</span> <span class="nc">utils</span><span class="p">:</span>
@@ -933,6 +1002,7 @@
         <span class="n">gauss</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">Input</span><span class="p">)]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
 
         <span class="k">return</span> <span class="n">gauss</span></div>
+    
     
 <div class="viewcode-block" id="utils.filter_nan_gaussian_conserving"><a class="viewcode-back" href="../CFXRD.html#CFXRD.utils.filter_nan_gaussian_conserving">[docs]</a>    <span class="k">def</span> <span class="nf">filter_nan_gaussian_conserving</span><span class="p">(</span><span class="n">Input</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">,</span> <span class="n">sigma</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Apply a gaussian filter to an array with nans.</span>
@@ -985,7 +1055,6 @@
         <span class="k">return</span> <span class="n">gauss</span></div></div>
     
 
-
 <div class="viewcode-block" id="FibrePlot"><a class="viewcode-back" href="../CFXRD.html#CFXRD.FibrePlot">[docs]</a><span class="k">class</span> <span class="nc">FibrePlot</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Class to plot fibre orientation</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -1010,8 +1079,8 @@
         
         
 <div class="viewcode-block" id="FibrePlot.motorPosition"><a class="viewcode-back" href="../CFXRD.html#CFXRD.FibrePlot.motorPosition">[docs]</a>    <span class="k">def</span> <span class="nf">motorPosition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x_pos</span><span class="p">,</span><span class="n">y_pos</span><span class="p">,</span><span class="n">cat</span><span class="p">,</span><span class="n">angle1</span><span class="p">,</span> <span class="n">angle2</span><span class="p">,</span> <span class="n">redchi1</span><span class="p">,</span> <span class="n">redchi2</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">x_pos</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">x_pos</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="o">-</span><span class="mi">1</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">y_pos</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">y_pos</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">x_pos</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">x_pos</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">y_pos</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">y_pos</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="mi">1</span>
         
         <span class="bp">self</span><span class="o">.</span><span class="n">xUnique</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">x_pos</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">yUnique</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">y_pos</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
@@ -1027,20 +1096,21 @@
         
         <span class="bp">self</span><span class="o">.</span><span class="n">redchi1</span> <span class="o">=</span> <span class="n">redchi1</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">redchi2</span> <span class="o">=</span> <span class="n">redchi2</span></div>
+
         
-<div class="viewcode-block" id="FibrePlot.Plot"><a class="viewcode-back" href="../CFXRD.html#CFXRD.FibrePlot.Plot">[docs]</a>    <span class="k">def</span> <span class="nf">Plot</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">def</span> <span class="nf">forceAspect</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="n">aspect</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
-            <span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_images</span><span class="p">()</span>
-            <span class="n">extent</span> <span class="o">=</span>  <span class="n">im</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_extent</span><span class="p">()</span>
-            <span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="nb">abs</span><span class="p">((</span><span class="n">extent</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">extent</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="n">extent</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">-</span><span class="n">extent</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span><span class="o">/</span><span class="n">aspect</span><span class="p">)</span>
+<div class="viewcode-block" id="FibrePlot.Orientation_Plot"><a class="viewcode-back" href="../CFXRD.html#CFXRD.FibrePlot.Orientation_Plot">[docs]</a>    <span class="k">def</span> <span class="nf">Orientation_Plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label</span><span class="p">:</span><span class="nb">str</span><span class="o">=</span><span class="s1">&#39;OFF&#39;</span><span class="p">):</span>
+        <span class="c1"># def forceAspect(ax,aspect=1):</span>
+        <span class="c1">#     im = ax.get_images()</span>
+        <span class="c1">#     extent =  im[0].get_extent()</span>
+        <span class="c1">#     ax.set_aspect(abs((extent[1]-extent[0])/(extent[3]-extent[2]))/aspect)</span>
          
-        <span class="c1">#fig = plt.figure()</span>
-        <span class="c1">#plt.axis(&#39;equal&#39;)</span>
-        <span class="c1">#plt.axis(&#39;off&#39;)</span>
-        <span class="c1">#fig.set_size_inches(10, 10)</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 
         <span class="n">k</span> <span class="o">=</span> <span class="mf">0.08</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">totalPoint</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">totalPoint</span><span class="p">):</span>
             <span class="n">x1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x_pos</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
             <span class="n">x2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x_pos</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
             
@@ -1048,10 +1118,10 @@
             <span class="n">y2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_pos</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">k</span>
             
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">cat</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Fibre&#39;</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">redchi1</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">&lt;</span> <span class="n">np</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">redchi2</span><span class="p">[</span><span class="n">i</span><span class="p">]):</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">redchi1</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">&lt;</span> <span class="n">np</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">redchi2</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span> <span class="ow">or</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">redchi2</span><span class="p">[</span><span class="n">i</span><span class="p">]):</span>
                     <span class="n">angle</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">angle1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
                     <span class="n">transAngle</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="mi">180</span><span class="o">-</span><span class="n">angle</span><span class="p">)</span>
-                <span class="k">else</span><span class="p">:</span>
+                <span class="k">elif</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">redchi1</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">redchi2</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span> <span class="ow">or</span> <span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">redchi1</span><span class="p">[</span><span class="n">i</span><span class="p">]):</span>
                     <span class="n">angle</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">angle2</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
                     <span class="n">transAngle</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="mi">360</span><span class="o">-</span><span class="n">angle</span><span class="p">)</span>
                     
@@ -1059,13 +1129,22 @@
                 <span class="n">xnew2</span><span class="p">,</span> <span class="n">ynew2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rotate</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">x_pos</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_pos</span><span class="p">[</span><span class="n">i</span><span class="p">]],</span> <span class="p">[</span><span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">],</span> <span class="n">transAngle</span><span class="p">)</span>
                 
                 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">xnew1</span><span class="p">,</span> <span class="n">xnew2</span><span class="p">],[</span><span class="n">ynew1</span><span class="p">,</span> <span class="n">ynew2</span><span class="p">],</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
-                
+
             <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">cat</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Resin&#39;</span><span class="p">:</span>
                 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x_pos</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="bp">self</span><span class="o">.</span><span class="n">y_pos</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="s1">&#39;.r&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
             <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">cat</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Off&#39;</span><span class="p">:</span>
                 <span class="c1"># Uncomment to reveal empty space (off sample)</span>
                 <span class="c1">#plt.plot(self.x_pos[i],self.y_pos[i],&#39;.g&#39;, markersize=4)</span>
-                <span class="k">pass</span></div></div>
+                <span class="k">pass</span>
+
+            <span class="k">if</span> <span class="n">label</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;on&#39;</span><span class="p">:</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x_pos</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_pos</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">i</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">label</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;off&#39;</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Please specify ON or OFF label plot&#39;</span><span class="p">)</span></div></div>
+
+
         
         
         

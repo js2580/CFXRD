@@ -7,6 +7,7 @@ Created on Sun Aug 28 12:08:08 2022
 
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib.markers as markers
 import pandas as pd
 import math
 from math import sin, cos
@@ -102,7 +103,7 @@ class CFXRD:
         self.Intensity_Azimuthal  = self.Intensity[:, 
                                         np.argmin(np.abs(self.AzimuthalAngle-angleMin)):np.argmin(np.abs(self.AzimuthalAngle-angleMax))+1 ,
                                             np.argmin(np.abs(self.RadialDist-radialMin)):np.argmin(np.abs(self.RadialDist-radialMax))+1]
-        
+    
     
     def GenResultArray(self, ColumnNames = None):
         """This function generate a pre-define table data to stored neccessary parameters
@@ -552,7 +553,7 @@ class CFXRD:
     def combineDataintoGridarray(Dir:str, scanNo:list, filetype = '.csv'):
         """This function combine multiples scans into a single array with the unique positions
             Motor position can be sorted 
-            df = df.sort_values(['Ymotor', 'Xmotor'], ascending = [True, False])
+            df = df.sort_values(['Ymotor', 'Xmotor'], ascending = [True, True])
 
         Args:
             :Dir (str): File directory
@@ -613,7 +614,7 @@ class CFXRD:
         
         df = pd.concat(gb, axis=0)
         # Invert axis by chaning ascending
-        df = df.sort_values(['Ymotor', 'Xmotor'], ascending = [True, False])
+        df = df.sort_values(['Ymotor', 'Xmotor'], ascending = [True, True])
         
         
         for z in range(0,len(columns)):
@@ -818,6 +819,75 @@ class CFXRD:
 
         return Input
     
+    def Mapping_Plot(Input:np.array, cbarTitle:str, category:np.array, cbarLabel:str, cbarMax:float, cbarMin:float, Marker:str = 'OFF', label = 'OFF'):
+        """ This function plots heating mapping of the input 2D array like image pixels
+
+        Args:
+            :Input (np.array): Input 2D array
+            :cbarTitle (str): Colour bar title
+            :category (np.array): Category to classify data points such Fibre or Off-sample positions
+            :cbarLabel (str): Colour bar label
+            :cbarMax (float): Colour bar max intensity value
+            :cbarMin (float): Colour bar min intensity value
+            :Marker (str, optional): Error marker point (x) Defaults to 'OFF'.
+            :label (str, optional): Pixel number label. Defaults to 'OFF'.
+
+        Raises:
+            ValueError: ON or OFF label plot
+        """
+        class OOMFormatter(matplotlib.ticker.ScalarFormatter):
+            def __init__(self, order=0, fformat="%1.1f", offset=True, mathText=True):
+                self.oom = order
+                self.fformat = fformat
+                matplotlib.ticker.ScalarFormatter.__init__(self,useOffset=offset,useMathText=mathText)
+            def _set_order_of_magnitude(self):
+                self.orderOfMagnitude = self.oom
+            def _set_format(self, vmin=None, vmax=None):
+                self.format = self.fformat
+                if self._useMathText:
+                    self.format = r'$\mathdefault{%s}$' % self.format
+
+        Cat = category
+        height, width = Input.shape
+
+        fig, ax = plt.subplots()
+        marker = markers.MarkerStyle('x')
+
+        # Overlay the marker on the image
+        if Marker.lower() == 'on':
+            for i in range(height):
+                for j in range(width):
+                    if (Cat[i, j] == 'Fibre') and (np.isnan(Input[i,j])):
+                        ax.plot(j, i, marker=marker, color='k', markersize=6, linewidth=12)
+        elif Marker.lower() == 'off':
+            pass
+        else:
+            raise ValueError('Please specify ON or OFF label plot')
+
+        plt.axis('off')
+        plt.set_cmap('jet') # plt.set_cmap('rainbow') # plt.set_cmap('tab20c') 
+        plot = plt.imshow(Input, aspect=('equal'), origin='lower') 
+        plt.clim(cbarMin, cbarMax)
+
+        cbar = fig.colorbar(plot, format=OOMFormatter(-3, mathText=False))
+        cbar.set_label(cbarLabel)
+        plt.title(cbarTitle)
+        plt.tight_layout()    
+
+        if label.lower() == 'on':
+            # Get the dimensions of the data
+            # Iterate over each pixel and annotate
+            index = 0 
+            for i in range(height):
+                for j in range(width):
+                    plt.text(j, i, index, ha='center', fontsize=8, va='center', color='black')
+                    index += 1
+        elif label.lower() == 'off':
+            pass
+        else:
+            raise ValueError('Please specify ON or OFF label plot')
+
+
 
 #
 class utils:
@@ -862,6 +932,7 @@ class utils:
         gauss[np.isnan(Input)] = np.nan
 
         return gauss
+    
     
     def filter_nan_gaussian_conserving(Input:np.array, sigma):
         """Apply a gaussian filter to an array with nans.
@@ -914,7 +985,6 @@ class utils:
         return gauss
     
 
-
 class FibrePlot:
     """Class to plot fibre orientation
     """
@@ -939,8 +1009,8 @@ class FibrePlot:
         
         
     def motorPosition(self,x_pos,y_pos,cat,angle1, angle2, redchi1, redchi2):
-        self.x_pos = round(x_pos, 2) * -1
-        self.y_pos = round(y_pos, 2) * -1
+        self.x_pos = round(x_pos, 2) * 1
+        self.y_pos = round(y_pos, 2) * 1
         
         self.xUnique = np.shape(np.unique(x_pos))[0]
         self.yUnique = np.shape(np.unique(y_pos))[0]
@@ -956,20 +1026,21 @@ class FibrePlot:
         
         self.redchi1 = redchi1
         self.redchi2 = redchi2
+
         
     def Orientation_Plot(self, label:str='OFF'):
-        def forceAspect(ax,aspect=1):
-            im = ax.get_images()
-            extent =  im[0].get_extent()
-            ax.set_aspect(abs((extent[1]-extent[0])/(extent[3]-extent[2]))/aspect)
+        # def forceAspect(ax,aspect=1):
+        #     im = ax.get_images()
+        #     extent =  im[0].get_extent()
+        #     ax.set_aspect(abs((extent[1]-extent[0])/(extent[3]-extent[2]))/aspect)
          
-        #fig = plt.figure()
-        #plt.axis('equal')
-        #plt.axis('off')
-        #fig.set_size_inches(10, 10)
+        fig = plt.figure()
+        plt.axis('equal')
+        plt.axis('off')
+        fig.set_size_inches(10, 10)
 
         k = 0.08
-        for i in range(0,self.totalPoint):
+        for i in range(0, self.totalPoint):
             x1 = self.x_pos[i]
             x2 = self.x_pos[i]
             
@@ -977,10 +1048,10 @@ class FibrePlot:
             y2 = self.y_pos[i] - k
             
             if self.cat[i] == 'Fibre':
-                if (np.absolute(self.redchi1[i]) < np.absolute(self.redchi2[i])) and ~np.isnan(self.redchi1[i]):
+                if (np.absolute(self.redchi1[i]) < np.absolute(self.redchi2[i])) or np.isnan(self.redchi2[i]):
                     angle = self.angle1[i]
                     transAngle = math.radians(180-angle)
-                elif (np.absolute(self.redchi1[i]) > np.absolute(self.redchi2[i])) and ~np.isnan(self.redchi2[i]):
+                elif (np.absolute(self.redchi1[i]) > np.absolute(self.redchi2[i])) or np.isnan(self.redchi1[i]):
                     angle = self.angle2[i]
                     transAngle = math.radians(360-angle)
                     
@@ -988,7 +1059,7 @@ class FibrePlot:
                 xnew2, ynew2 = self.rotate([self.x_pos[i], self.y_pos[i]], [x2, y2], transAngle)
                 
                 plt.plot([xnew1, xnew2],[ynew1, ynew2],'k')
-                
+
             elif self.cat[i] == 'Resin':
                 plt.plot(self.x_pos[i],self.y_pos[i],'.r', markersize=4)
             elif self.cat[i] == 'Off':
@@ -1002,6 +1073,8 @@ class FibrePlot:
                 continue
             else:
                 raise ValueError('Please specify ON or OFF label plot')
+
+
         
         
         
