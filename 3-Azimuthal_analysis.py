@@ -54,8 +54,12 @@ fit110 = False
 for scanNo in scanlist:
     # Call functions
     metaData = CFXRD() 
+    
     # Define experimental parameters
-    metaData.setDetectorParams(pixelSize= 0.075, SD= 127.032, BeamEnergy = 15.2) # in mm and energy in keV
+    pixelSize = 0.075 # Pixel size
+    SD = 127.032 # Sample to detector distance (mm)
+    BeamEnergy = 15.2 # Beam energy (keV)
+    metaData.setDetectorParams(pixelSize = pixelSize, SD = SD, BeamEnergy = BeamEnergy) 
     
     # Open and Read data from NEXUS file 
     dataset = h5py.File( nexus_dir + str(scanNo)  + '_caking.nxs' , 'r')

@@ -51,8 +51,14 @@ fit110 = False
 
 # ! Loop through each scanning set
 for scanNo in scanlist:
+    # Call functions
     metaData = CFXRD() 
-    metaData.setDetectorParams(pixelSize= 0.075, SD= 127.032, BeamEnergy = 15.2) # in mm and energy in keV
+        
+    # Define experimental parameters
+    pixelSize = 0.075 # Pixel size
+    SD = 127.032 # Sample to detector distance (mm)
+    BeamEnergy = 15.2 # Beam energy (keV)
+    metaData.setDetectorParams(pixelSize = pixelSize, SD = SD, BeamEnergy = BeamEnergy) 
     
     # Open and Read data from NEXUS file 
     dataset = h5py.File( nexus_dir + str(scanNo)  + '_caking.nxs' , 'r')
@@ -68,7 +74,7 @@ for scanNo in scanlist:
     # correct q-spacing from sample displacement
     twoTheta, d = metaData.Qspacing_to_Dspacing(Q)
     # new 2theta
-    eta = metaData.twoThetaShift(disp=1, SD=127.032, twoTheta=twoTheta)
+    eta = metaData.twoThetaShift(disp=1, SD=SD, twoTheta=twoTheta)
     Q = metaData.twoTheta_to_Qspacing(twoTheta-eta)
     
     metaData.readCakeData(Intensity = Intensity, AzimuthalAngle = Angle, RadialDist = Q)
