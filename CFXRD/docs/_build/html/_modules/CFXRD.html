@@ -841,19 +841,19 @@
 
         <span class="k">return</span> <span class="n">epsilon</span></div>
 
-<div class="viewcode-block" id="CFXRD.twoThetaShift"><a class="viewcode-back" href="../CFXRD.html#CFXRD.CFXRD.twoThetaShift">[docs]</a>    <span class="k">def</span> <span class="nf">twoThetaShift</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">disp</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">twoTheta</span><span class="p">):</span>
+<div class="viewcode-block" id="CFXRD.twoThetaShift"><a class="viewcode-back" href="../CFXRD.html#CFXRD.CFXRD.twoThetaShift">[docs]</a>    <span class="k">def</span> <span class="nf">twoThetaShift</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">disp</span><span class="p">,</span> <span class="n">SD</span><span class="p">,</span> <span class="n">twoTheta</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Specimen-displacement correction for powder X-ray diffraction in Debye-Scherrer geometry with a flat area detector, see https://doi.org/10.1107/S1600576722011360</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            :disp (real): Sample Displacement. Defaults to 3. in mm.</span>
-<span class="sd">            :R (real): Sample to Detector distance. Defaults to 127.032.</span>
+<span class="sd">            :SD (real): Sample to Detector distance. Defaults to 127.032.</span>
 <span class="sd">            :twoTheta (np.array): Range of 2θ in degree. Defaults to np.linspace(7, 43, 43-7+1).</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            :eta: Correction angle</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">numerator</span> <span class="o">=</span> <span class="n">disp</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">twoTheta</span> <span class="o">*</span> <span class="mi">2</span><span class="p">))</span>
-        <span class="n">denominator</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">R</span> <span class="o">-</span> <span class="n">disp</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">twoTheta</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">denominator</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">SD</span> <span class="o">-</span> <span class="n">disp</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">twoTheta</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
         <span class="n">eta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan</span><span class="p">(</span><span class="n">numerator</span><span class="o">/</span><span class="n">denominator</span><span class="p">)</span> <span class="o">*</span> <span class="mi">180</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span>
         <span class="c1"># new 2theta = 2theta - eta</span>
         <span class="k">return</span> <span class="n">eta</span></div>

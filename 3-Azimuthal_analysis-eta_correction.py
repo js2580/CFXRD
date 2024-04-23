@@ -68,7 +68,7 @@ for scanNo in scanlist:
     # correct q-spacing from sample displacement
     twoTheta, d = metaData.Qspacing_to_Dspacing(Q)
     # new 2theta
-    eta = metaData.twoThetaShift(disp=1, R=127.032, twoTheta=twoTheta)
+    eta = metaData.twoThetaShift(disp=1, SD=127.032, twoTheta=twoTheta)
     Q = metaData.twoTheta_to_Qspacing(twoTheta-eta)
     
     metaData.readCakeData(Intensity = Intensity, AzimuthalAngle = Angle, RadialDist = Q)
