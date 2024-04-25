@@ -757,7 +757,7 @@
         <span class="k">return</span> <span class="n">twoTheta</span><span class="p">,</span> <span class="n">d</span></div>
     
 <div class="viewcode-block" id="CFXRD.twoTheta_to_Qspacing"><a class="viewcode-back" href="../CFXRD.html#CFXRD.CFXRD.twoTheta_to_Qspacing">[docs]</a>    <span class="k">def</span> <span class="nf">twoTheta_to_Qspacing</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Input</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Convert q-spacing to d-spacing</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Convert 2θ to q-spacing</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            :Input (real): 2θ in degree</span>
@@ -776,9 +776,33 @@
         
         <span class="n">q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">Input</span><span class="p">))</span>
         <span class="n">q</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
-        <span class="n">q</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span><span class="o">=</span> <span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">wavelength</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">Input</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">)</span>
+        <span class="n">q</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span><span class="o">=</span> <span class="mi">4</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">wavelength</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">Input</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span>
 
         <span class="k">return</span> <span class="n">q</span></div>
+    
+<div class="viewcode-block" id="CFXRD.twoTheta_to_Dspacing"><a class="viewcode-back" href="../CFXRD.html#CFXRD.CFXRD.twoTheta_to_Dspacing">[docs]</a>    <span class="k">def</span> <span class="nf">twoTheta_to_Dspacing</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Input</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Convert 2θ to d-spacing</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            :Input (real): 2θ in degree</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            :d: d-spacing in angstorm</span>
+
+<span class="sd">        .. warning::</span>
+<span class="sd">            Requires Wavelength.</span>
+<span class="sd">            Define this via setDetectorParams().</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1">#Input = 2theta in degrees</span>
+        <span class="n">Input</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">Input</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+        <span class="n">Input</span><span class="p">[</span><span class="n">Input</span> <span class="o">==</span> <span class="nb">float</span><span class="p">(</span><span class="mi">0</span><span class="p">)]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+        <span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">Input</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
+        
+        <span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">Input</span><span class="p">))</span>
+        <span class="n">d</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+        <span class="n">d</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span><span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">wavelength</span><span class="o">/</span> <span class="mi">2</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">Input</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">d</span></div>
     
 <div class="viewcode-block" id="CFXRD.lattice_strain_d_spacing"><a class="viewcode-back" href="../CFXRD.html#CFXRD.CFXRD.lattice_strain_d_spacing">[docs]</a>    <span class="k">def</span> <span class="nf">lattice_strain_d_spacing</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">d_0</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Convert d-spacing to lattice strain</span>

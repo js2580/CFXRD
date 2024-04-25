@@ -687,7 +687,7 @@ class CFXRD:
         return twoTheta, d
     
     def twoTheta_to_Qspacing(self, Input):
-        """Convert q-spacing to d-spacing
+        """Convert 2θ to q-spacing
 
         Args:
             :Input (real): 2θ in degree
@@ -706,9 +706,33 @@ class CFXRD:
         
         q = np.zeros(np.shape(Input))
         q[:] = np.nan
-        q[mask]= 4*np.pi/self.wavelength*np.sin(Input[mask]/2 * np.pi/180)
+        q[mask]= 4*np.pi/self.wavelength*np.sin(np.radians(Input[mask]/2))
 
         return q
+    
+    def twoTheta_to_Dspacing(self, Input):
+        """Convert 2θ to d-spacing
+
+        Args:
+            :Input (real): 2θ in degree
+
+        Returns:
+            :d: d-spacing in angstorm
+
+        .. warning::
+            Requires Wavelength.
+            Define this via setDetectorParams().
+        """
+        #Input = 2theta in degrees
+        Input = np.array(Input, dtype=float)
+        Input[Input == float(0)] = np.nan
+        mask = np.isfinite(Input, dtype=bool)
+        
+        d = np.zeros(np.shape(Input))
+        d[:] = np.nan
+        d[mask]= self.wavelength/ 2 / np.sin(np.radians(Input[mask]/2))
+
+        return d
     
     def lattice_strain_d_spacing(self, d, d_0):
         """Convert d-spacing to lattice strain

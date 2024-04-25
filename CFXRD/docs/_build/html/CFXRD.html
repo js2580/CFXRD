@@ -591,9 +591,34 @@ Caked data will be 3D array e.g. [No. slice, azimuthal angle, radial distance]</
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="CFXRD.CFXRD.twoTheta_to_Dspacing">
+<span class="sig-name descname"><span class="pre">twoTheta_to_Dspacing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Input</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CFXRD.html#CFXRD.twoTheta_to_Dspacing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CFXRD.CFXRD.twoTheta_to_Dspacing" title="Permalink to this definition"></a></dt>
+<dd><p>Convert 2θ to d-spacing</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="field-list simple">
+<dt class="field-odd">Input (real)<span class="colon">:</span></dt>
+<dd class="field-odd"><p>2θ in degree</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><dl class="field-list simple">
+<dt class="field-odd">d<span class="colon">:</span></dt>
+<dd class="field-odd"><p>d-spacing in angstorm</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Requires Wavelength.
+Define this via setDetectorParams().</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="CFXRD.CFXRD.twoTheta_to_Qspacing">
 <span class="sig-name descname"><span class="pre">twoTheta_to_Qspacing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Input</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/CFXRD.html#CFXRD.twoTheta_to_Qspacing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#CFXRD.CFXRD.twoTheta_to_Qspacing" title="Permalink to this definition"></a></dt>
-<dd><p>Convert q-spacing to d-spacing</p>
+<dd><p>Convert 2θ to q-spacing</p>
 <dl class="simple">
 <dt>Args:</dt><dd><dl class="field-list simple">
 <dt class="field-odd">Input (real)<span class="colon">:</span></dt>
