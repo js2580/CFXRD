@@ -38,10 +38,12 @@ columns = dat.columns
 
 # %%
 metaData = CFXRD() 
-# SD = 127.168 #mm
-# wavelength = 0.8156856 #Angstrom 15.2keV
-# pixelSize = 0.075 #mm   #Eiger 4M
-metaData.setDetectorParams(pixelSize= 0.075, SD= 127.032, BeamEnergy = 15.2) # in mm and energy in keV 
+
+# Define experimental parameters
+pixelSize = 0.075 # Pixel size
+SD = 127.032 # Sample to detector distance (mm)
+BeamEnergy = 15.2 # Beam energy (keV)
+metaData.setDetectorParams(pixelSize = pixelSize, SD = SD, BeamEnergy = BeamEnergy) 
 
 # ** Combine all set into a single grid array arranging in term of motors positions
 gridDat = CFXRD.combineDataintoGridarray(Dir, scanNo, filetype = suffix + '.csv')
