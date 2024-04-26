@@ -795,7 +795,7 @@ class CFXRD:
 
         return epsilon
 
-    def twoThetaShift(self, disp, SD, twoTheta):
+    def twoThetaShift(self, disp, twoTheta):
         """Specimen-displacement correction for powder X-ray diffraction in Debye-Scherrer geometry with a flat area detector, see https://doi.org/10.1107/S1600576722011360
 
         Args:
@@ -807,7 +807,7 @@ class CFXRD:
             :eta: Correction angle
         """
         numerator = disp*np.sin(np.radians(twoTheta * 2))
-        denominator = 2*(SD - disp * np.sin(np.radians(twoTheta))**2)
+        denominator = 2*(self.SD - disp * np.sin(np.radians(twoTheta))**2)
         eta = np.arctan(numerator/denominator) * 180 / np.pi
         # new 2theta = 2theta - eta
         return eta
