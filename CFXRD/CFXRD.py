@@ -832,7 +832,7 @@ class CFXRD:
         """
         numerator = disp*np.sin(np.radians(twoTheta * 2))
         denominator = 2*(self.SD - disp * np.sin(np.radians(twoTheta))**2)
-        eta = np.arctan(numerator/denominator) * 180 / np.pi
+        eta = np.degrees(np.arctan(numerator/denominator))
         # new 2theta = 2theta - eta
         return eta
 

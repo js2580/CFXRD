@@ -43,3 +43,9 @@ source CFXRD/bin/activate
 pip install -r scripts/requirements.txt
 ```
 
+# Data reduction (Caking XRD integration)
+
+```
+Download DAWN science: https://dawnsci.org/
+Processing: https://lightform-group.github.io/wiki/tutorials/sxrd-caking
+```
