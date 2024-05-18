@@ -5,9 +5,7 @@ This library provides Python scripts for X-ray diffraction (XRD) analysis in Pol
 ## References: 
 J. Srisuriyachot, Carbon fibre lattice strain mapping via microfocus synchrotron X-ray diffraction of a reinforced composite, *Carbon*, 200, pp.347-360, DOI: https://doi.org/10.1016/j.carbon.2022.08.041
 
-# Quick start 
-
-Clone git and create virtual environment
+# Clone git and create virtual environment
 
 ```
 git clone https://github.com/js2580/CFXRD.git
@@ -24,9 +22,13 @@ python -m venv CFXRD
 
 ### Activate environment
 
+Windows:
 ```
-Windows: ./CFXRD/Script/activate
-Linux: source CFXRD/bin/activate
+./CFXRD/Script/activate
+```
+Linux: 
+```
+source CFXRD/bin/activate
 ```
 
 ### Install necessary libraries and version
