@@ -1,3 +1,7 @@
+# Negate the exclusion for worked example
+!_eigerScan389633_caking.nxs
+!389633.dat
+
 # Data files
 *.csv
 *.dat
