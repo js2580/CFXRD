@@ -1,12 +1,12 @@
-# Negate the exclusion for worked example
-!data/caking/_eigerScan389633_caking.nxs
-!data/motor/389633.dat
-
 # Data files
 *.csv
 *.dat
 *.nxs
 *.h5
+
+# Negate the exclusion for worked example
+!./data/caking/_eigerScan389633_caking.nxs
+!./data/motor/389633.dat
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
