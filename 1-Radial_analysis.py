@@ -43,12 +43,13 @@ ColumnNames = ['ScanNo', 'PointNo', 'Xmotor', 'Ymotor', 'Cat',\
 """
 # Multiple scanning points or Single scanning point
 # singleScan: True --> ignore motor positions (NAN value)
-# singleScan: True --> read motor positions (True value)
+# singleScan: False --> read motor positions (True value)
 """
 singleScan = False
 
 # ** Define scan set numbers
-setScan = [389632,389633,389634] # 0% Humpback bridge sample
+# Multiple scans can be done at once such as [389632,389633,389634]
+setScan = [389633] # 0% Humpback bridge sample
 
 # ** Define multiple scan numbers
 scanlist = setScan 
@@ -57,7 +58,7 @@ scanlist = setScan
 for scanNo in scanlist:
     # Call functions
     metaData = CFXRD() 
-    
+
     # Define experimental parameters
     pixelSize = 0.075 # Pixel size
     SD = 127.032 # Sample to detector distance (mm)
@@ -72,7 +73,7 @@ for scanNo in scanlist:
     
     # Close NEXUS file
     dataset.close()
-    
+
     metaData.readCakeData(Intensity = Intensity, AzimuthalAngle = Angle, RadialDist = Q)
     # Define q range for 002
     minQ = 1.5
@@ -82,15 +83,17 @@ for scanNo in scanlist:
     # maxQ = 3.25
     metaData.cake_RadialIntegration(radialMax = maxQ, radialMin = minQ, angleMax = 450, angleMin = 90)
     
-    metaData.GenResultArray(ColumnNames = ColumnNames)
 
     # ! Check if there is an exisiting file
     if os.path.isfile(outDir + str(scanNo) + output_suffix) == True:
         # Assigned exisisting date to Result array
         metaData.ResultArray = pd.read_csv(outDir + str(scanNo) + output_suffix)
     else:
-        continue
-    
+        # if there is no existing file
+        metaData.GenResultArray(ColumnNames = ColumnNames)
+
+
+
     # ! Loop through scanning points in each scanning set (z-axis)
     for pointNo in tqdm(range(metaData.TotalSlice)):
     # for pointNo in [1543]:
@@ -153,11 +156,11 @@ for scanNo in scanlist:
 
         ############# @@@@@@@@@@@@@ #############
         ##Plot filter peaks
-        plt.figure()
-        plt.plot(x[idx==1], y[idx==1], 'g.')    
-        plt.xlabel('Azimuthal angle (degrees)')
-        plt.ylabel('Intensity counts')
-        plt.plot(x[idx==1][peak_pos], y[idx==1][peak_pos], 'rx')
+        # plt.figure()
+        # plt.plot(x[idx==1], y[idx==1], 'g.')    
+        # plt.xlabel('Azimuthal angle (degrees)')
+        # plt.ylabel('Intensity counts')
+        # plt.plot(x[idx==1][peak_pos], y[idx==1][peak_pos], 'rx')
        ############# @@@@@@@@@@@@@ #############
        
         # if len(peak_pos) == 2 and mean >= 40 and np.max(y[idx==1][peak_pos])>=80:

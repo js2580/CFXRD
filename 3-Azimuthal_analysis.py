@@ -24,7 +24,7 @@ from CFXRD.CFXRD import *
 ParentDir = '.\\'
 
 outDir = ParentDir + '\\data\\lattice_strain\\'
-output_suffix = '_002_75FWHM_100_120FWHM_fullRing_800bins.csv'
+output_suffix = '.csv'
 nexus_dir = ParentDir + '\\data\\caking\\_eigerScan'
 angle_dir = ParentDir + '\\data\\fibre_angle\\'
 
@@ -41,7 +41,8 @@ ColumnNames = ['ScanNo', 'PointNo', 'Xmotor', 'Ymotor', 'Cat',\
            ]
 
 # ** Define scan set numbers
-setScan = [389632,389633,389634] # 0% Humpback bridge sample
+# Multiple scans can be done at once such as [389632,389633,389634]
+setScan = [389633] # 0% Humpback bridge sample
 
 scanlist = setScan
 
@@ -108,7 +109,7 @@ for scanNo in scanlist:
     for pointNo in tqdm(range(metaData.TotalSlice)):
     # for pointNo in [1597]:
     # for pointNo in [865, 872]:
-        print(f'im No: {pointNo}')
+        # print(f'im No: {pointNo}')
         if cat[pointNo] == 'Fibre':
             if (np.absolute(angle_chi1[pointNo]) < np.absolute(angle_chi2[pointNo])) or np.isnan(angle_chi2[pointNo]):
                 angle = angle1[pointNo] 
@@ -148,14 +149,8 @@ for scanNo in scanlist:
                 # plt.plot(x, y)
                 #######################################
                 p002 = 1.8 #d002 = 3.48
-                # LowerLim = 1.2
-                # UpperLim = 2.2
-                # LowerLim = 1.50
-                # UpperLim = 2.05
                 LowerLim = 1.35 #optimised for allA
                 UpperLim = 2.30 #optimised for allA
-                # LowerLim = 1.20 #optimised for allA - allB
-                # UpperLim = 2.70 #optimised for allA - allB
                 
                 spec = {
                         'x': x,
@@ -225,8 +220,6 @@ for scanNo in scanlist:
                 #######################################
                 
                 p100 = 3.0
-                # LowerLim = 2.7
-                # UpperLim = 3.3
                 LowerLim = 2.75
                 UpperLim = 3.25
 

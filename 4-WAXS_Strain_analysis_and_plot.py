@@ -27,13 +27,14 @@ Dir = ParentDir + '\\data\\lattice_strain\\\\'
 
 
 # ** Define scan set numbers
-setScan = [389632,389633,389634] # 0% Humpback bridge sample
+# Multiple scans can be done at once such as [389632,389633,389634]
+setScan = [389633] # 0% Humpback bridge sample
 
 scanNo = setScan
 
-suffix = '_002_75FWHM_100_120FWHM_fullRing_800bins'
+suffix = '.csv'
 
-dat = pd.read_csv(Dir +  str(scanNo[0]) +  suffix + '.csv') 
+dat = pd.read_csv(Dir +  str(scanNo[0]) +  suffix) 
 columns = dat.columns
 
 # %%
@@ -46,7 +47,7 @@ BeamEnergy = 15.2 # Beam energy (keV)
 metaData.setDetectorParams(pixelSize = pixelSize, SD = SD, BeamEnergy = BeamEnergy) 
 
 # ** Combine all set into a single grid array arranging in term of motors positions
-gridDat = CFXRD.combineDataintoGridarray(Dir, scanNo, filetype = suffix + '.csv')
+gridDat = CFXRD.combineDataintoGridarray(Dir, scanNo, filetype = suffix)
 
 Cat = gridDat[:,:,columns.get_loc('Cat')].copy()
 
@@ -70,11 +71,11 @@ epsilon100  = CFXRD.Epsilon_cal(metaData, d100, d0, dtype='d-spacing')
 ###############################################################################
 
 CFXRD.Mapping_Plot(epsilon002, category=Cat, cbarTitle='{002}', cbarLabel='Relative radial {002} lattice strain, (mm/mm)', 
-            cbarMax=2E-3, cbarMin=-9e-3, Marker = 'ON', label = 'ON')
+            cbarMax=-5E-3, cbarMin=-10e-3, Marker = 'ON', label = 'OFF')
 
 ###############################################################################
 CFXRD.Mapping_Plot(epsilon100, category=Cat, cbarTitle='{100}', cbarLabel='Relative radial {100} lattice strain, (mm/mm)', 
-            cbarMax=-3E-3, cbarMin=2e-3, Marker = 'ON', label = 'ON')
+            cbarMax=-4E-3, cbarMin=-2e-3, Marker = 'ON', label = 'OFF')
 
 ###############################################################################
 #%%
