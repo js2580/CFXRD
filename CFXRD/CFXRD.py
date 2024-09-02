@@ -835,7 +835,18 @@ class CFXRD:
         eta = np.degrees(np.arctan(numerator/denominator))
         # new 2theta = 2theta - eta
         return eta
+        
+    def scherrer(self, twoTheta, fwhm, k):
+        """Scherrer equation for crystal size calculation
 
+        Args:
+            twoTheta (real): Twotheta in degree
+            fwhm (real): Full-width half maximum
+            k (real): Scherrer constant. 0.90 for graphitic layers stacked perpendicular to fibre axis. 1.84 for graphitic layer in the plane along fibre axis.
+        """
+        L = (k*self.wavelength)/(fwhm*np.cos(np.radians(twoTheta/2)))
+        return L
+        
     def get_neighbor_average(self, Input:np.array, Cat): 
         """Allow value to propagate to NaN by averaing neighbor values
         """
