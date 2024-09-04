@@ -878,7 +878,7 @@ class CFXRD:
 
         return Input
     
-    def Mapping_Plot(Input:np.array, cbarTitle:str, category:np.array, cbarLabel:str, cbarMax:float, cbarMin:float, Marker:str = 'OFF', label = 'OFF'):
+    def Mapping_Plot(Input:np.array, cbarTitle:str, category:np.array, cbarLabel:str, cbarMax:float, cbarMin:float, Marker:str = 'OFF', label:str = 'OFF', sci_exp = -3):
         """ This function plots heating mapping of the input 2D array like image pixels
 
         Args:
@@ -928,7 +928,7 @@ class CFXRD:
         plot = plt.imshow(Input, aspect=('equal'), origin='lower') 
         plt.clim(cbarMin, cbarMax)
 
-        cbar = fig.colorbar(plot, format=OOMFormatter(-3, mathText=False))
+        cbar = fig.colorbar(plot, format=OOMFormatter(sci_exp, mathText=False))
         cbar.set_label(cbarLabel)
         plt.title(cbarTitle)
         plt.tight_layout()    
