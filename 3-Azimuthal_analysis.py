@@ -86,7 +86,7 @@ for scanNo in scanlist:
     else:
         # if there is no existing file
         # read fibre orientatin angle from angle output file
-        df = pd.read_csv(angle_dir +  str(scanNo) +  '.csv')
+        df = pd.read_csv(angle_dir +  str(scanNo) +  output_suffix)
         # Assigned to the first few columns
         metaData.ResultArray.iloc[:,:len(df.columns)] = df 
         
