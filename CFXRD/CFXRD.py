@@ -878,18 +878,20 @@ class CFXRD:
 
         return Input
     
-    def Mapping_Plot(Input:np.array, cbarTitle:str, category:np.array, cbarLabel:str, cbarMax:float, cbarMin:float, Marker:str = 'OFF', label:str = 'OFF', sci_exp = -3):
+    def Mapping_Plot(Input: np.array, cbarTitle: str, category: np.array, cbarLabel: str,
+                 cbarMax: float = None, cbarMin: float = None, Marker: str = 'OFF',
+                 label: str = 'OFF', sci_exp: int = -3):
         """ This function plots heating mapping of the input 2D array like image pixels
 
         Args:
-            :Input (np.array): Input 2D array
-            :cbarTitle (str): Colour bar title
-            :category (np.array): Category to classify data points such Fibre or Off-sample positions
-            :cbarLabel (str): Colour bar label
-            :cbarMax (float): Colour bar max intensity value
-            :cbarMin (float): Colour bar min intensity value
-            :Marker (str, optional): Error marker point (x) Defaults to 'OFF'.
-            :label (str, optional): Pixel number label. Defaults to 'OFF'.
+            Input (np.array): Input 2D array
+            cbarTitle (str): Colour bar title
+            category (np.array): Category to classify data points such Fibre or Off-sample positions
+            cbarLabel (str): Colour bar label
+            cbarMax (float): Colour bar max intensity value
+            cbarMin (float): Colour bar min intensity value
+            Marker (str, optional): Error marker point (x) Defaults to 'OFF'.
+            label (str, optional): Pixel number label. Defaults to 'OFF'.
 
         Raises:
             ValueError: ON or OFF label plot
@@ -905,7 +907,13 @@ class CFXRD:
                 self.format = self.fformat
                 if self._useMathText:
                     self.format = r'$\mathdefault{%s}$' % self.format
-
+                    
+        # Use numpy nanmax/nanmin for default values if not provided
+        if cbarMax is None:
+            cbarMax = np.nanmax(Input)
+        if cbarMin is None:
+            cbarMin = np.nanmin(Input)
+            
         Cat = category
         height, width = Input.shape
 
@@ -923,9 +931,9 @@ class CFXRD:
         else:
             raise ValueError('Please specify ON or OFF label plot')
 
-        plt.axis('off')
+        # plt.axis('off')
         plt.set_cmap('jet') # plt.set_cmap('rainbow') # plt.set_cmap('tab20c') 
-        plot = plt.imshow(Input, aspect=('equal'), origin='lower') 
+        plot = plt.imshow(Input, aspect=('equal'), origin='lower') #
         plt.clim(cbarMin, cbarMax)
 
         cbar = fig.colorbar(plot, format=OOMFormatter(sci_exp, mathText=False))
