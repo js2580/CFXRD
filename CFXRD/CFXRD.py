@@ -386,7 +386,7 @@ class CFXRD:
             else:
                 composite_model = composite_model + model # combine models
         #
-        FittingOutput = composite_model.fit(spec['y'], params, x= spec['x'], method = 'least_squares')
+        FittingOutput = composite_model.fit(spec['y'], params, x= spec['x'], method = 'least_squares', fit_kws={'xtol': 2e-10, 'ftol': 2e-10}, max_nfev=1e20)
         """""
         .. code-block:: python
             #Test script
