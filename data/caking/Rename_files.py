@@ -10,7 +10,7 @@ import re
 suffix = '_caking.nxs'
 
 # Look for all files in the folder
-filesList = os.listdir('./.')
+filesList = [f for f in os.listdir() if os.path.isfile(f)]
 if 'Rename_files.py' in filesList:
     filesList.remove('Rename_files.py') # Igonre the script itself
 
