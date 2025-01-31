@@ -12,6 +12,7 @@ import pandas as pd
 import math
 from math import sin, cos
 from lmfit import models
+from lmfit import Parameters
 from scipy import ndimage
 import warnings
 
@@ -325,9 +326,9 @@ class CFXRD:
             prefix = f'm{i}_'
             model = getattr(models, basis_func['type'])(prefix=prefix)  # get a model from specified function from lmlit
             if basis_func['type'] in ['GaussianModel', 'LorentzianModel', 'VoigtModel']: # for now VoigtModel has gamma constrained to sigma
-                model.set_param_hint('sigma', min=1e-6, max=x_range)
-                model.set_param_hint('center', min=x_min, max=x_max)
-                model.set_param_hint('height', min=1e-6, max=1.1*y_max)
+                model.set_param_hint('sigma', min=1e-6, max=float(x_range))
+                model.set_param_hint('center', min=float(x_min), max=float(x_max))
+                model.set_param_hint('height', min=1e-6, max=float(1.1*y_max))
                 model.set_param_hint('amplitude', min=1e-6)
                 # default guess is horrible!! do not use guess()
                 # default_params = {
@@ -335,46 +336,52 @@ class CFXRD:
                     # prefix+'height': y_max * random.random(),
                     # prefix+'sigma': x_range * random.random()
                     # }
-                default_params = {
-                    prefix+'center': x[np.absolute(y - y_max).argmin()],
-                    prefix+'height': y_max ,
-                    prefix+'sigma' : (x_max - x_min)/2,
-                    }
+                default_params = Parameters()
+                default_params.add(f'{prefix}center', float(x[np.absolute(y - y_max).argmin()]))
+                default_params.add(f'{prefix}height', float(y_max))
+                default_params.add(f'{prefix}sigma', float((x_max - x_min)/2))
+                
             elif basis_func['type'] in ['PseudoVoigtModel']: 
-                model.set_param_hint('sigma', min=1e-6, max=x_range) #max=x_range
-                model.set_param_hint('center', min=x_min, max=x_max)
-                model.set_param_hint('height', min=1e-6, max=1.1*y_max)
+                model.set_param_hint('sigma', min=1e-6, max=float(x_range)) #max=x_range
+                model.set_param_hint('center', min=x_min, max=float(x_max))
+                model.set_param_hint('height', min=1e-6, max=float(1.1*y_max))
                 model.set_param_hint('amplitude', min=1e-6)
                 model.set_param_hint('fraction', min=1e-6, max=1.0)
                 # default_params = {
-                    # prefix+'center': x_min + x_range * random.random(),
-                    # prefix+'height': y_max * random.random(),
-                    # prefix+'sigma': x_range * random.random(),
+                    # prefix+'center': float(x_min + x_range * random.random()),
+                    # prefix+'height': float(y_max * random.random()),
+                    # prefix+'sigma': float(x_range * random.random()),
                     # prefix+'fraction': 0.5
                     # }
                 # fraction = 1 is full LorentzianModel and fraction = 0 is full GaussianModel
-                default_params = {
-                    prefix+'center': x[np.absolute(y - y_max).argmin()],
-                    prefix+'height': y_max ,
-                    prefix+'sigma' : (x_max - x_min)/2,
-                    prefix+'fraction': 0.5
-                    }
+                # default_params = {
+                #     prefix+'center': float(x[np.absolute(y - y_max).argmin()]),
+                #     prefix+'height': float(y_max),
+                #     prefix+'sigma' : float((x_max - x_min)/2),
+                #     prefix+'fraction': 0.5
+                #     }
+                default_params = Parameters()
+                default_params.add(f'{prefix}center', float(x[np.absolute(y - y_max).argmin()]))
+                default_params.add(f'{prefix}height', float(y_max))
+                default_params.add(f'{prefix}sigma', float((x_max - x_min)/2))
+                default_params.add(f'{prefix}fraction', 0.5)
                     
             elif basis_func['type'] in ['LinearModel']: 
-                model.set_param_hint('slope', min= -np.inf, max= np.inf) #max=x_range
-                model.set_param_hint('intercept', min= -np.inf, max= np.inf)
-                default_params = {
-                    prefix+'slope': (y[-1] - y[0]) / (x[-1] - x[0]),
-                    prefix+'intercept': y[0],
-                    }
+                model.set_param_hint('slope', min= float(-np.inf), max= float(np.inf)) #max=x_range
+                model.set_param_hint('intercept', min= float(-np.inf), max= float(np.inf))
+                default_params = Parameters()
+                default_params.add(f'{prefix}slope', float((y[-1] - y[0]) / (x[-1] - x[0])))
+                default_params.add(f'{prefix}intercept', float(y[0]))
+                
             else:
-                raise NotImplementedError(f'model {basis_func["type"]} not implemented yet. Only GaussianModel, LorentzianModel, VoigtModel are available')
+                raise NotImplementedError(f'model {basis_func["type"]} not implemented yet. Only GaussianModel, LorentzianModel, VoigtModel, LinearModel are available')
             #
             if 'help' in basis_func:  # allow override of settings in parameter with specified values
                 for param, options in basis_func['help'].items():
                     model.set_param_hint(param, **options)
-            #   
-            model_params = model.make_params(**default_params, **basis_func.get('params', {}))  #initial guess parameters
+            #
+            model_params = model.make_params(**default_params, **basis_func.get('params', {}))
+            print(model_params)
             #
             if params is None:
                 params = model_params   # params for the first peak
@@ -658,7 +665,7 @@ class CFXRD:
         """Convert q-spacing to d-spacing
 
         Args:
-            :Input (real): q-spacing
+            :q (real): q-spacing
 
         Returns:
             :twoTheta: 2θ in degree
@@ -835,18 +842,33 @@ class CFXRD:
         eta = np.degrees(np.arctan(numerator/denominator))
         # new 2theta = 2theta - eta
         return eta
-        
+    
     def scherrer(self, twoTheta, fwhm, k):
         """Scherrer equation for crystal size calculation
 
         Args:
             twoTheta (real): Twotheta in degree
-            fwhm (real): Full-width half maximum
+            fwhm (real): Full-width half maximum in degree
             k (real): Scherrer constant. 0.90 for graphitic layers stacked perpendicular to fibre axis. 1.84 for graphitic layer in the plane along fibre axis.
         """
-        L = (k*self.wavelength)/(fwhm*np.cos(np.radians(twoTheta/2)))
+        fwhm = np.array(fwhm, dtype=float)
+        twoTheta = np.array(twoTheta, dtype=float)
+        L = (k*self.wavelength)/(np.radians(fwhm)*np.cos(np.radians(twoTheta/2)))
         return L
         
+    def scherrer_q(self, fwhm, k):
+        """Scherrer equation for crystal size calculation in q-spacing
+
+        Args:
+            fwhm (real): Full-width half maximum in Å
+            k (real): Scherrer constant. 0.90 for graphitic layers stacked perpendicular to fibre axis. 1.84 for graphitic layer in the plane along fibre axis.
+            
+        Returns:
+        :L: Crystal size in Å
+        """
+        L = k * 2 * np.pi/fwhm
+        return L
+
     def get_neighbor_average(self, Input:np.array, Cat): 
         """Allow value to propagate to NaN by averaing neighbor values
         """
@@ -1103,7 +1125,7 @@ class FibrePlot:
          
         fig = plt.figure()
         plt.axis('equal')
-        plt.axis('off')
+        # plt.axis('off')
         fig.set_size_inches(10, 10)
 
         k = 0.08
@@ -1115,7 +1137,7 @@ class FibrePlot:
             y2 = self.y_pos[i] - k
             
             if self.cat[i] == 'Fibre':
-                if (np.absolute(self.redchi1[i]) < np.absolute(self.redchi2[i])) or np.isnan(self.redchi2[i]):
+                if (np.absolute(self.redchi1[i]) <= np.absolute(self.redchi2[i])) or np.isnan(self.redchi2[i]):
                     angle = self.angle1[i]
                     transAngle = math.radians(180-angle)
                 elif (np.absolute(self.redchi1[i]) > np.absolute(self.redchi2[i])) or np.isnan(self.redchi1[i]):
