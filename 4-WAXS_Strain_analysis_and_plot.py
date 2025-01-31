@@ -19,8 +19,6 @@ import pandas as pd
 
 from CFXRD.CFXRD import *
 
-import seaborn as sns
-
 # ** Define directory paths
 ParentDir = '.\\'
 Dir = ParentDir + '\\data\\lattice_strain\\\\'
