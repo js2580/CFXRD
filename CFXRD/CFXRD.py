@@ -381,7 +381,6 @@ class CFXRD:
                     model.set_param_hint(param, **options)
             #
             model_params = model.make_params(**default_params, **basis_func.get('params', {}))
-            print(model_params)
             #
             if params is None:
                 params = model_params   # params for the first peak
